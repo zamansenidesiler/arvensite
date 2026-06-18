@@ -1,5 +1,23 @@
+import { useEffect, useState } from 'react'
 import { useLang } from '../context/LanguageContext'
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { useTilt } from '../hooks/useTilt'
+
+function TiltCard({ children, className, style, ...props }) {
+  const tilt = useTilt()
+  return (
+    <div
+      ref={tilt.ref}
+      onMouseMove={tilt.onMouseMove}
+      onMouseLeave={tilt.onMouseLeave}
+      className={`tilt-card ${className || ''}`}
+      style={style}
+      {...props}
+    >
+      {children}
+    </div>
+  )
+}
 
 const AvatarA = ({ size = 30 }) => (
   <div
@@ -20,6 +38,89 @@ export default function Trust() {
   const sectionRef = useScrollReveal()
   const msgs = t.trust.messages
 
+  const [startChat, setStartChat] = useState(false)
+  const [visibleCount, setVisibleCount] = useState(0)
+  const [showTyping, setShowTyping] = useState(false)
+
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStartChat(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.15 }
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [sectionRef])
+
+  useEffect(() => {
+    if (!startChat) return
+
+    const timers = []
+
+    // 1. Client message 1 (Merhaba! Ekibim için...)
+    timers.push(
+      setTimeout(() => {
+        setVisibleCount(1)
+      }, 600)
+    )
+
+    // 2. Support typing starts
+    timers.push(
+      setTimeout(() => {
+        setShowTyping(true)
+      }, 1500)
+    )
+
+    // 3. Support message 1 (Harika bir tercih! Hangi...)
+    timers.push(
+      setTimeout(() => {
+        setShowTyping(false)
+        setVisibleCount(2)
+      }, 3200)
+    )
+
+    // 4. Client message 2 (Sokak modası ağırlıklı...)
+    timers.push(
+      setTimeout(() => {
+        setVisibleCount(3)
+      }, 4200)
+    )
+
+    // 5. Support typing starts
+    timers.push(
+      setTimeout(() => {
+        setShowTyping(true)
+      }, 5100)
+    )
+
+    // 6. Support message 2 (Anlıyorum! Sıfırdan...)
+    timers.push(
+      setTimeout(() => {
+        setShowTyping(false)
+        setVisibleCount(4)
+      }, 7300)
+    )
+
+    // 7. Support final typing dots (stay active)
+    timers.push(
+      setTimeout(() => {
+        setShowTyping(true)
+      }, 8200)
+    )
+
+    return () => {
+      timers.forEach(t => clearTimeout(t))
+    }
+  }, [startChat])
+
   return (
     <section ref={sectionRef} className="section-block">
       <div className="container-site">
@@ -33,7 +134,7 @@ export default function Trust() {
         </div>
 
         <div className="trust-grid">
-          <div className="sr-left sr-d2 card-modern trust-chat-card">
+          <TiltCard className="sr-left sr-d2 card-modern trust-chat-card">
             <div className="trust-chat-header">
               <AvatarA size={36} />
               <div style={{ flex: 1 }}>
@@ -53,16 +154,15 @@ export default function Trust() {
             </div>
 
             <div className="trust-chat-body">
-              {msgs.map((msg, i) => (
+              {msgs.slice(0, visibleCount).map((msg, i) => (
                 <div
                   key={i}
-                  className="sr"
+                  className="chat-message-fade-in"
                   style={{
                     display: 'flex',
                     flexDirection: msg.role === 'support' ? 'row' : 'row-reverse',
                     alignItems: 'flex-end',
                     gap: '0.625rem',
-                    transitionDelay: `${0.45 + i * 0.28}s`,
                   }}
                 >
                   {msg.role === 'support' && <AvatarA size={28} />}
@@ -94,26 +194,28 @@ export default function Trust() {
                 </div>
               ))}
 
-              <div className="sr" style={{ display: 'flex', alignItems: 'flex-end', gap: '0.625rem', transitionDelay: `${0.45 + msgs.length * 0.28}s` }}>
-                <AvatarA size={28} />
-                <div style={{
-                  padding: '0.625rem 0.875rem',
-                  borderRadius: '4px 12px 12px 12px',
-                  background: 'var(--surface-hover)',
-                  border: '1px solid var(--border)',
-                  display: 'flex', gap: '5px', alignItems: 'center',
-                }}>
-                  {[0, 1, 2].map(i => (
-                    <div key={i} className="typing-dot" style={{ animationDelay: `${i * 0.22}s` }} />
-                  ))}
+              {showTyping && (
+                <div className="chat-message-fade-in" style={{ display: 'flex', alignItems: 'flex-end', gap: '0.625rem' }}>
+                  <AvatarA size={28} />
+                  <div style={{
+                    padding: '0.625rem 0.875rem',
+                    borderRadius: '4px 12px 12px 12px',
+                    background: 'var(--surface-hover)',
+                    border: '1px solid var(--border)',
+                    display: 'flex', gap: '5px', alignItems: 'center',
+                  }}>
+                    {[0, 1, 2].map(i => (
+                      <div key={i} className="typing-dot" style={{ animationDelay: `${i * 0.22}s` }} />
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
-          </div>
+          </TiltCard>
 
           <div className="trust-stats-col">
             {t.trust.stats.map((stat, i) => (
-              <div key={i} className={`trust-stat-card sr-right sr-d${Math.min(i + 2, 7)}`} style={{ transitionDelay: `${0.2 + i * 0.12}s` }}>
+              <TiltCard key={i} className={`trust-stat-card sr-right sr-d${Math.min(i + 2, 7)}`} style={{ transitionDelay: `${0.2 + i * 0.12}s` }}>
                 <div style={{
                   position: 'absolute', top: 0, left: 0, width: 80, height: 80,
                   background: `radial-gradient(circle at 0% 0%, ${stat.glow} 0%, transparent 70%)`,
@@ -128,7 +230,7 @@ export default function Trust() {
                 <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.65 }}>
                   {stat.desc}
                 </div>
-              </div>
+              </TiltCard>
             ))}
           </div>
         </div>

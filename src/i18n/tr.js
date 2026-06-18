@@ -18,25 +18,6 @@ const tr = {
     scroll: 'Kaydır',
   },
   marquee: ['PREMİUM TASARIMLAR', 'FİVEM ÖZEL', 'ÖZEL GİYSİ', 'EŞSİZ STİLLER', 'YÜKSEK KALİTE', 'ÖZENLE HAZIRLANDI'],
-  features: {
-    items: [
-      {
-        icon: 'delivery',
-        title: 'Anında Teslimat',
-        desc: 'Escrow veya Open Source paketlerinize Discord üzerinden hızlı erişim sağlayın.',
-      },
-      {
-        icon: 'quality',
-        title: 'Premium Kalite',
-        desc: 'Tüm giysiler FPS optimize, LOD destekli ve oyun içi mükemmel uyumlu.',
-      },
-      {
-        icon: 'setup',
-        title: 'Kolay Kurulum',
-        desc: 'Detaylı dokümantasyon ve 7/24 Discord desteği ile hızlıca başlayın.',
-      },
-    ],
-  },
   about: {
     badge: 'Hakkımda',
     title: 'Sanal dünyalar için dijital moda tasarlıyorum',
@@ -73,16 +54,6 @@ const tr = {
     pants: 'Pantolonlar',
     set: 'Kombin Setler',
     hover: 'Tasarımı Gör',
-  },
-  community: {
-    badge: 'Topluluk',
-    title: 'Büyüyen Bir Topluluğun Parçası',
-    subtitle: 'FiveM sunucuları Arvenmods ile oyuncularına premium moda deneyimi sunuyor.',
-    stats: [
-      { value: 200, suffix: '+', label: 'Tamamlanan Tasarım' },
-      { value: 50, suffix: '+', label: 'Aktif Sunucu' },
-      { value: 500, suffix: '+', label: 'Discord Üyesi' },
-    ],
   },
   reviews: {
     badge: 'Müşteri Yorumları',

@@ -18,25 +18,6 @@ const en = {
     scroll: 'Scroll to explore',
   },
   marquee: ['PREMIUM DESIGNS', 'FIVEM EXCLUSIVE', 'CUSTOM CLOTHING', 'UNIQUE STYLES', 'HIGH QUALITY', 'CRAFTED WITH CARE'],
-  features: {
-    items: [
-      {
-        icon: 'delivery',
-        title: 'Instant Delivery',
-        desc: 'Get fast access to your Escrow or Open Source packs through Discord.',
-      },
-      {
-        icon: 'quality',
-        title: 'Premium Quality',
-        desc: 'Every garment is FPS-optimized with LOD support and perfect in-game fit.',
-      },
-      {
-        icon: 'setup',
-        title: 'Easy Setup',
-        desc: 'Detailed documentation and 24/7 Discord support to get you started quickly.',
-      },
-    ],
-  },
   about: {
     badge: 'About Me',
     title: 'Crafting digital fashion for virtual worlds',
@@ -73,16 +54,6 @@ const en = {
     pants: 'Pants',
     set: 'Full Sets',
     hover: 'View Design',
-  },
-  community: {
-    badge: 'Community',
-    title: 'Join Our Growing Community',
-    subtitle: 'FiveM servers trust Arvenmods to deliver premium fashion for their players.',
-    stats: [
-      { value: 200, suffix: '+', label: 'Designs Completed' },
-      { value: 50, suffix: '+', label: 'Active Servers' },
-      { value: 500, suffix: '+', label: 'Discord Members' },
-    ],
   },
   reviews: {
     badge: 'Customer Reviews',

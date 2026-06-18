@@ -3,6 +3,7 @@ import { useLang } from '../context/LanguageContext'
 import { siteConfig } from '../config/site'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { scrollToSection } from '../utils/scrollTo'
+import { useTilt } from '../hooks/useTilt'
 
 const CheckIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -12,9 +13,15 @@ const CheckIcon = () => (
 
 function PricingCard({ pack, variant, delayClass }) {
   const isFeatured = variant === 'featured'
+  const tilt = useTilt()
 
   return (
-    <article className={`pricing-card ${isFeatured ? 'pricing-card-featured' : ''} sr-scale ${delayClass}`}>
+    <article
+      ref={tilt.ref}
+      onMouseMove={tilt.onMouseMove}
+      onMouseLeave={tilt.onMouseLeave}
+      className={`pricing-card ${isFeatured ? 'pricing-card-featured' : ''} tilt-card sr-scale ${delayClass}`}
+    >
       <div className="pricing-card-body">
         <span className="pricing-pack-label">{pack.name}</span>
         <div className="pricing-price-row">

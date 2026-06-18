@@ -1,5 +1,6 @@
 import { useLang } from '../context/LanguageContext'
 import { siteConfig } from '../config/site'
+import { useTilt } from '../hooks/useTilt'
 
 const DiscordIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -25,6 +26,7 @@ const easeOut = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
 
 export default function Contact() {
   const { t } = useLang()
+  const tilt = useTilt()
 
   const socials = [
     siteConfig.twitter && { href: siteConfig.twitter, icon: <TwitterIcon />, label: 'Twitter / X' },
@@ -34,12 +36,22 @@ export default function Contact() {
   return (
     <section id="contact" className="section-block" style={{ paddingBottom: 'clamp(4rem, 8vw, 7rem)' }}>
       <div className="container-site">
-        <div className="contact-panel" style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
-          <div className="section-badge" style={{ justifyContent: 'center', marginBottom: '2rem', animation: `heroFadeIn 0.7s ${easeOut} both`, animationDelay: '0.1s' }}>
+        <div
+          ref={tilt.ref}
+          onMouseMove={tilt.onMouseMove}
+          onMouseLeave={tilt.onMouseLeave}
+          className="contact-panel tilt-card"
+          style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}
+        >
+          {/* Floating decorative orbs inside the panel */}
+          <div className="contact-orb orb-1" aria-hidden="true" />
+          <div className="contact-orb orb-2" aria-hidden="true" />
+
+          <div className="section-badge" style={{ justifyContent: 'center', marginBottom: '2rem', animation: `heroFadeIn 0.7s ${easeOut} both`, animationDelay: '0.1s', position: 'relative', zIndex: 2 }}>
             {t.contact.badge}
           </div>
 
-          <div style={{ marginBottom: '2rem' }}>
+          <div style={{ marginBottom: '2rem', position: 'relative', zIndex: 2 }}>
             {[
               { text: t.contact.line1, style: 'muted' },
               { text: t.contact.line2, style: 'gradient' },
@@ -66,6 +78,7 @@ export default function Contact() {
             color: 'var(--text-secondary)', fontSize: 'clamp(0.875rem, 1.5vw, 1.05rem)',
             lineHeight: 1.75, maxWidth: 500, margin: '0 auto 3rem',
             animation: `heroFadeIn 0.7s ${easeOut} both`, animationDelay: '0.55s',
+            position: 'relative', zIndex: 2
           }}>
             {t.contact.sub}
           </p>
@@ -73,8 +86,9 @@ export default function Contact() {
           <div style={{
             display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem',
             animation: `heroFadeIn 0.6s ${easeOut} both`, animationDelay: '0.7s',
+            position: 'relative', zIndex: 2
           }}>
-            <a href={siteConfig.discord} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ fontSize: '1rem', padding: '1rem 2.5rem' }}>
+            <a href={siteConfig.discord} target="_blank" rel="noopener noreferrer" className="btn-primary discord-pulse" style={{ fontSize: '1rem', padding: '1rem 2.5rem' }}>
               <DiscordIcon />
               {t.contact.discord}
             </a>

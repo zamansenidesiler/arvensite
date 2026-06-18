@@ -4,14 +4,13 @@ import SeoHead from './components/SeoHead'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Marquee from './components/Marquee'
-import Features from './components/Features'
 import Footer from './components/Footer'
 import SectionLoader from './components/SectionLoader'
+import CustomCursor from './components/CustomCursor'
 
 const About = lazy(() => import('./components/About'))
 const Trust = lazy(() => import('./components/Trust'))
 const Gallery = lazy(() => import('./components/Gallery'))
-const CommunityStats = lazy(() => import('./components/CommunityStats'))
 const Services = lazy(() => import('./components/Services'))
 const Reviews = lazy(() => import('./components/Reviews'))
 const Process = lazy(() => import('./components/Process'))
@@ -27,16 +26,16 @@ export default function App() {
   return (
     <LanguageProvider>
       <SeoHead />
+      <CustomCursor />
+      <div className="scroll-progress" aria-hidden="true" />
       <div className="noise-overlay" aria-hidden="true" />
       <Navbar />
       <main id="main-content">
         <Hero />
         <Marquee />
-        <Features />
         <LazySection><About /></LazySection>
         <LazySection><Trust /></LazySection>
         <LazySection><Gallery /></LazySection>
-        <LazySection><CommunityStats /></LazySection>
         <LazySection><Services /></LazySection>
         <LazySection><Reviews /></LazySection>
         <LazySection><Process /></LazySection>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useLang } from '../context/LanguageContext'
 import { siteConfig } from '../config/site'
 import { scrollToSection, scrollToTop } from '../utils/scrollTo'
+import { useTextScramble } from '../hooks/useTextScramble'
 
 const SunIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
@@ -32,13 +33,44 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark')
+  const scramble = useTextScramble()
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
     localStorage.setItem('theme', theme)
   }, [theme])
 
-  const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark')
+  const toggleTheme = (event) => {
+    if (!document.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setTheme(t => t === 'dark' ? 'light' : 'dark')
+      return
+    }
+    const x = event.clientX ?? window.innerWidth / 2
+    const y = event.clientY ?? window.innerHeight / 2
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    )
+    const transition = document.startViewTransition(() => {
+      setTheme(t => t === 'dark' ? 'light' : 'dark')
+    })
+    transition.ready.then(() => {
+      const clipPath = [
+        `circle(0px at ${x}px ${y}px)`,
+        `circle(${endRadius}px at ${x}px ${y}px)`
+      ]
+      document.documentElement.animate(
+        {
+          clipPath: clipPath
+        },
+        {
+          duration: 450,
+          easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+          pseudoElement: '::view-transition-new(root)'
+        }
+      )
+    })
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -84,14 +116,19 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center gap-10">
             {links.map(({ key, id }) => (
-              <button key={key} onClick={() => scrollTo(id)} className="nav-link">
+              <button
+                key={key}
+                onClick={() => scrollTo(id)}
+                className="nav-link"
+                onMouseEnter={(e) => scramble(e, t.nav[key])}
+              >
                 {t.nav[key]}
               </button>
             ))}
           </div>
 
           <div className="flex items-center gap-3">
-            <button onClick={toggleTheme} aria-label="Toggle theme" className="nav-icon-btn">
+            <button onClick={(e) => toggleTheme(e)} aria-label="Toggle theme" className="nav-icon-btn">
               {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
             </button>
 
