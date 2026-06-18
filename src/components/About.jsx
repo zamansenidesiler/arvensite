@@ -79,7 +79,9 @@ export default function About() {
           <VideoShowcase />
 
           <div>
-            <div className="section-badge sr" style={{ marginBottom: '1.5rem' }}>{t.about.badge}</div>
+            <div style={{ display: 'flex', marginBottom: '1.5rem' }}>
+              <div className="badge-skew sr">{t.about.badge}</div>
+            </div>
             <h2 className="section-title sr sr-d1" style={{ textAlign: 'left', marginBottom: '1.5rem' }}>
               {t.about.title}
             </h2>

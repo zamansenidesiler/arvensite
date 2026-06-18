@@ -15,10 +15,9 @@ export default function Hero() {
 
       <div className="container-site" style={{ position: 'relative', zIndex: 1 }}>
         <div
-          className="hero-badge-pill"
-          style={{ animation: `heroFadeIn 0.7s ${easeOut} both`, animationDelay: '0.15s' }}
+          style={{ animation: `heroFadeIn 0.7s ${easeOut} both`, animationDelay: '0.15s', display: 'inline-block' }}
         >
-          <div className="section-badge">{t.hero.badge}</div>
+          <div className="badge-skew">{t.hero.badge}</div>
         </div>
 
         <div style={{ marginBottom: '2rem' }}>
@@ -73,7 +72,7 @@ export default function Hero() {
             {t.hero.cta}
             <span style={{ fontSize: '1.1em' }}>→</span>
           </button>
-          <button onClick={() => scrollToSection('contact')} className="btn-ghost">
+          <button onClick={() => scrollToSection('contact')} className="btn-outlined-modern">
             {t.hero.ctaSecondary}
           </button>
         </div>

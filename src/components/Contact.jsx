@@ -42,8 +42,8 @@ export default function Contact() {
           <div className="contact-orb orb-1" aria-hidden="true" />
           <div className="contact-orb orb-2" aria-hidden="true" />
 
-          <div className="section-badge" style={{ justifyContent: 'center', marginBottom: '2rem', position: 'relative', zIndex: 2 }}>
-            {t.contact.badge}
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem', position: 'relative', zIndex: 2 }}>
+            <div className="badge-skew">{t.contact.badge}</div>
           </div>
 
           <h2 className="font-display font-extrabold" style={{
@@ -85,7 +85,7 @@ export default function Contact() {
                 </span>
                 <div style={{ display: 'flex', gap: '0.75rem' }}>
                   {socials.map((s, i) => (
-                    <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="btn-ghost" style={{ padding: '0.625rem 1.25rem', fontSize: '0.8rem', gap: '0.5rem' }}>
+                    <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="btn-outlined-modern" style={{ padding: '0.625rem 1.25rem', fontSize: '0.8rem', gap: '0.5rem' }}>
                       {s.icon}
                       {s.label}
                     </a>

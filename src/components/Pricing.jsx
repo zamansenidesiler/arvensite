@@ -20,7 +20,7 @@ function PricingCard({ pack, variant, delayClass }) {
       ref={tilt.ref}
       onMouseMove={tilt.onMouseMove}
       onMouseLeave={tilt.onMouseLeave}
-      className={`pricing-card ${isFeatured ? 'pricing-card-featured' : ''} tilt-card sr-scale ${delayClass}`}
+      className={`pricing-card card-glow-orange ${isFeatured ? 'pricing-card-featured' : ''} tilt-card sr-scale ${delayClass}`}
     >
       <div className="pricing-card-body">
         <span className="pricing-pack-label">{pack.name}</span>
@@ -61,7 +61,9 @@ export default function Pricing() {
     <section id="pricing" ref={sectionRef} className="section-block">
       <div className="container-site">
         <div className="section-header">
-          <div className="section-badge sr">{t.pricing.badge}</div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem' }}>
+            <div className="badge-skew sr">{t.pricing.badge}</div>
+          </div>
           <h2 className="section-title sr sr-d1">{t.pricing.title}</h2>
           <p className="section-subtitle sr sr-d2">{t.pricing.subtitle}</p>
         </div>
