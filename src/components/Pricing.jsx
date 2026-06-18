@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useLang } from '../context/LanguageContext'
 import { siteConfig } from '../config/site'
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { scrollToSection } from '../utils/scrollTo'
 
 const CheckIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -84,11 +85,7 @@ export default function Pricing() {
 
         <p className="pricing-footer-note sr sr-d6">
           {t.pricing.corporate}{' '}
-          <button type="button" className="pricing-contact-link" onClick={() => {
-            const el = document.getElementById('contact')
-            if (window.lenis) window.lenis.scrollTo(el, { offset: -80 })
-            else el?.scrollIntoView({ behavior: 'smooth' })
-          }}>
+          <button type="button" className="pricing-contact-link" onClick={() => scrollToSection('contact')}>
             {t.pricing.contactUs}
           </button>
         </p>

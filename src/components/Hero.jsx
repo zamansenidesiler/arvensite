@@ -1,21 +1,11 @@
 import { useLang } from '../context/LanguageContext'
+import { scrollToSection } from '../utils/scrollTo'
 
 const ease = 'cubic-bezier(0.17, 0.55, 0.55, 1)'
 const easeOut = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
 
 export default function Hero() {
   const { t } = useLang()
-
-  const scrollToGallery = () => {
-    const el = document.getElementById('gallery')
-    if (window.lenis) window.lenis.scrollTo(el, { offset: -80 })
-    else el?.scrollIntoView({ behavior: 'smooth' })
-  }
-  const scrollToContact = () => {
-    const el = document.getElementById('contact')
-    if (window.lenis) window.lenis.scrollTo(el, { offset: -80 })
-    else el?.scrollIntoView({ behavior: 'smooth' })
-  }
 
   return (
     <section className="hero-section">
@@ -79,11 +69,11 @@ export default function Hero() {
             animationDelay: '0.9s',
           }}
         >
-          <button onClick={scrollToGallery} className="btn-primary">
+          <button onClick={() => scrollToSection('gallery')} className="btn-primary">
             {t.hero.cta}
             <span style={{ fontSize: '1.1em' }}>→</span>
           </button>
-          <button onClick={scrollToContact} className="btn-ghost">
+          <button onClick={() => scrollToSection('contact')} className="btn-ghost">
             {t.hero.ctaSecondary}
           </button>
         </div>

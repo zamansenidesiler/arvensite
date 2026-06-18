@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useLang } from '../context/LanguageContext'
 import { siteConfig } from '../config/site'
+import { scrollToSection, scrollToTop } from '../utils/scrollTo'
 
 const SunIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
@@ -46,10 +47,7 @@ export default function Navbar() {
   }, [])
 
   const scrollTo = id => {
-    const el = document.getElementById(id)
-    if (!el) return
-    if (window.lenis) window.lenis.scrollTo(el, { offset: -80 })
-    else el.scrollIntoView({ behavior: 'smooth' })
+    scrollToSection(id)
     setMobileOpen(false)
   }
 
@@ -76,7 +74,7 @@ export default function Navbar() {
       <div className="container-site">
         <div className="flex items-center justify-between" style={{ height: 72 }}>
           <button
-            onClick={() => window.lenis?.scrollTo(0)}
+            onClick={() => scrollToTop()}
             aria-label="arvenmods"
             style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center' }}
           >

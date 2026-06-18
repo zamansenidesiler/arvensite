@@ -1,49 +1,48 @@
-import { useEffect } from 'react'
-import { LanguageProvider, useLang } from './context/LanguageContext'
+import { lazy, Suspense } from 'react'
+import { LanguageProvider } from './context/LanguageContext'
+import SeoHead from './components/SeoHead'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Marquee from './components/Marquee'
-import About from './components/About'
-import Trust from './components/Trust'
-import Gallery from './components/Gallery'
-import Services from './components/Services'
-import Process from './components/Process'
-import Pricing from './components/Pricing'
-import Faq from './components/Faq'
-import Contact from './components/Contact'
+import Features from './components/Features'
 import Footer from './components/Footer'
+import SectionLoader from './components/SectionLoader'
 
-// Syncs <html lang> and <title> with the active language for SEO
-function DynamicHead() {
-  const { lang } = useLang()
+const About = lazy(() => import('./components/About'))
+const Trust = lazy(() => import('./components/Trust'))
+const Gallery = lazy(() => import('./components/Gallery'))
+const CommunityStats = lazy(() => import('./components/CommunityStats'))
+const Services = lazy(() => import('./components/Services'))
+const Reviews = lazy(() => import('./components/Reviews'))
+const Process = lazy(() => import('./components/Process'))
+const Pricing = lazy(() => import('./components/Pricing'))
+const Faq = lazy(() => import('./components/Faq'))
+const Contact = lazy(() => import('./components/Contact'))
 
-  useEffect(() => {
-    document.documentElement.lang = lang
-    document.title = lang === 'tr'
-      ? 'Arvenmods — Premium FiveM Giysi Tasarımcısı | Custom Clothing Designer'
-      : 'Arvenmods — Premium FiveM Clothing Designer | Custom Clothing Design'
-  }, [lang])
-
-  return null
+function LazySection({ children }) {
+  return <Suspense fallback={<SectionLoader />}>{children}</Suspense>
 }
 
 export default function App() {
   return (
     <LanguageProvider>
-      <DynamicHead />
+      <SeoHead />
       <div className="noise-overlay" aria-hidden="true" />
       <Navbar />
-      <main>
+      <main id="main-content">
         <Hero />
         <Marquee />
-        <About />
-        <Trust />
-        <Gallery />
-        <Services />
-        <Process />
-        <Pricing />
-        <Faq />
-        <Contact />
+        <Features />
+        <LazySection><About /></LazySection>
+        <LazySection><Trust /></LazySection>
+        <LazySection><Gallery /></LazySection>
+        <LazySection><CommunityStats /></LazySection>
+        <LazySection><Services /></LazySection>
+        <LazySection><Reviews /></LazySection>
+        <LazySection><Process /></LazySection>
+        <LazySection><Pricing /></LazySection>
+        <LazySection><Faq /></LazySection>
+        <LazySection><Contact /></LazySection>
       </main>
       <Footer />
     </LanguageProvider>
