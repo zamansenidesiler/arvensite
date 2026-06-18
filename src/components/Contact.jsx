@@ -25,7 +25,7 @@ const InstagramIcon = () => (
 const easeOut = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
 
 export default function Contact() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const tilt = useTilt()
 
   const socials = [
@@ -51,28 +51,22 @@ export default function Contact() {
             {t.contact.badge}
           </div>
 
-          <div style={{ marginBottom: '2rem', position: 'relative', zIndex: 2 }}>
-            {[
-              { text: t.contact.line1, style: 'muted' },
-              { text: t.contact.line2, style: 'gradient' },
-              { text: t.contact.line3, style: 'outline' },
-            ].map(({ text, style }, i) => (
-              <div key={i} className="font-display font-extrabold" style={{ animation: `heroFadeUp 0.9s ${easeOut} both`, animationDelay: `${0.2 + i * 0.1}s` }}>
-                <span
-                  className={style === 'gradient' ? 'text-gradient' : style === 'outline' ? 'text-outline' : ''}
-                  style={{
-                    display: 'block',
-                    fontSize: 'clamp(2.25rem, 7vw, 7rem)',
-                    lineHeight: 0.96,
-                    paddingBottom: '0.06em',
-                    color: style === 'muted' ? 'var(--text-muted)' : undefined,
-                  }}
-                >
-                  {text}
-                </span>
-              </div>
-            ))}
-          </div>
+          <h2 className="font-display font-extrabold" style={{
+            fontSize: 'clamp(2rem, 4.5vw, 3.25rem)',
+            lineHeight: 1.25,
+            marginBottom: '1.5rem',
+            color: 'var(--text-primary)',
+            position: 'relative',
+            zIndex: 2,
+            animation: `heroFadeUp 0.9s ${easeOut} both`,
+            animationDelay: '0.2s'
+          }}>
+            {lang === 'tr' ? (
+              <>Birlikte <span className="text-gradient">Muhteşem Şeyler</span> Yapalım</>
+            ) : (
+              <>Let's Create <span className="text-gradient">Something Incredible</span></>
+            )}
+          </h2>
 
           <p style={{
             color: 'var(--text-secondary)', fontSize: 'clamp(0.875rem, 1.5vw, 1.05rem)',
