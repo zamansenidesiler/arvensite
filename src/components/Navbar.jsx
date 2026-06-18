@@ -34,7 +34,18 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark')
-  const scramble = useTextScramble()
+  const { scramble, cancel } = useTextScramble()
+
+  useEffect(() => {
+    const navLinks = document.querySelectorAll('.nav-link')
+    navLinks.forEach(link => {
+      cancel(link)
+      const key = link.getAttribute('data-nav-key')
+      if (key && t.nav[key]) {
+        link.textContent = t.nav[key]
+      }
+    })
+  }, [lang, t, cancel])
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
@@ -125,6 +136,7 @@ export default function Navbar() {
             {links.map(({ key, id }) => (
               <button
                 key={key}
+                data-nav-key={key}
                 onClick={() => scrollTo(id)}
                 className="nav-link"
                 onMouseEnter={(e) => scramble(e, t.nav[key])}

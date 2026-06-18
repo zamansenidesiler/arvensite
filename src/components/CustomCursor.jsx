@@ -24,53 +24,12 @@ export default function CustomCursor() {
     let ringX = mouseX
     let ringY = mouseY
 
-    let dotScale = 1
-    let ringScale = 1
-    let ringBg = 'transparent'
-    let ringBorderColor = 'rgba(245, 158, 11, 0.4)'
-
     const onMouseMove = (e) => {
       mouseX = e.clientX
       mouseY = e.clientY
     }
 
-    const onMouseEnterInteract = () => {
-      dotScale = 0.4
-      ringScale = 1.8
-      ringBg = 'rgba(245, 158, 11, 0.08)'
-      ringBorderColor = 'var(--accent)'
-      
-      ring.style.backgroundColor = ringBg
-      ring.style.borderColor = ringBorderColor
-    }
-
-    const onMouseLeaveInteract = () => {
-      dotScale = 1
-      ringScale = 1
-      ringBg = 'transparent'
-      ringBorderColor = 'rgba(245, 158, 11, 0.4)'
-      
-      ring.style.backgroundColor = ringBg
-      ring.style.borderColor = ringBorderColor
-    }
-
     window.addEventListener('mousemove', onMouseMove, { passive: true })
-
-    const addListeners = () => {
-      const interactive = document.querySelectorAll('a, button, .nav-link, .bento-tile, .pricing-cta, .pricing-toggle, .lightbox-close')
-      interactive.forEach(el => {
-        el.removeEventListener('mouseenter', onMouseEnterInteract)
-        el.removeEventListener('mouseleave', onMouseLeaveInteract)
-        el.addEventListener('mouseenter', onMouseEnterInteract)
-        el.addEventListener('mouseleave', onMouseLeaveInteract)
-      })
-    }
-
-    addListeners()
-
-    // Re-register listener targets on body dynamic changes
-    const observer = new MutationObserver(addListeners)
-    observer.observe(document.body, { childList: true, subtree: true })
 
     let active = true
     const tick = () => {
@@ -82,8 +41,8 @@ export default function CustomCursor() {
       ringX += (mouseX - ringX) * 0.15
       ringY += (mouseY - ringY) * 0.15
 
-      cursor.style.transform = `translate3d(${cursorX - 4}px, ${cursorY - 4}px, 0) scale(${dotScale})`
-      ring.style.transform = `translate3d(${ringX - 20}px, ${ringY - 20}px, 0) scale(${ringScale})`
+      cursor.style.transform = `translate3d(${cursorX - 4}px, ${cursorY - 4}px, 0) scale(1)`
+      ring.style.transform = `translate3d(${ringX - 20}px, ${ringY - 20}px, 0) scale(1)`
 
       requestAnimationFrame(tick)
     }
@@ -93,7 +52,6 @@ export default function CustomCursor() {
       active = false
       window.removeEventListener('mousemove', onMouseMove)
       document.body.style.cursor = ''
-      observer.disconnect()
     }
   }, [])
 

@@ -1,13 +1,24 @@
-import { useCallback } from 'react'
+import { useCallback, useRef, useEffect } from 'react'
 
 export function useTextScramble() {
-  const scramble = useCallback((e, originalText) => {
+  const activeAnimations = useRef(new Map())
+
+  const cancel = useCallback((el) => {
+    if (activeAnimations.current.has(el)) {
+      cancelAnimationFrame(activeAnimations.current.get(el))
+      activeAnimations.current.delete(el)
+    }
+  }, [])
+
+  const scramble = useCallback((e, targetText) => {
     const el = e.currentTarget
+    cancel(el)
+
     const chars = 'ABCDEFGHJKLMNOPQRSTUVWXYZ!@#$%&*_+-=<>[]{}'
     let frame = 0
     const queue = []
     
-    const text = originalText || el.textContent
+    const text = targetText || el.textContent
     for (let i = 0; i < text.length; i++) {
       const from = text[i]
       if (from === ' ') {
@@ -19,7 +30,6 @@ export function useTextScramble() {
       queue.push({ from, to: '', start, end })
     }
 
-    let animationFrameId
     const update = () => {
       let output = ''
       let complete = 0
@@ -43,16 +53,22 @@ export function useTextScramble() {
 
       if (complete < queue.length) {
         frame++
-        animationFrameId = requestAnimationFrame(update)
+        const animId = requestAnimationFrame(update)
+        activeAnimations.current.set(el, animId)
       } else {
         el.textContent = text
+        activeAnimations.current.delete(el)
       }
     }
 
     update()
+  }, [cancel])
 
-    return () => cancelAnimationFrame(animationFrameId)
+  useEffect(() => {
+    return () => {
+      activeAnimations.current.forEach((id) => cancelAnimationFrame(id))
+    }
   }, [])
 
-  return scramble
+  return { scramble, cancel }
 }
