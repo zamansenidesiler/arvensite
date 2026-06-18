@@ -1,6 +1,5 @@
 import { useLang } from '../context/LanguageContext'
 import { siteConfig } from '../config/site'
-import { useTilt } from '../hooks/useTilt'
 
 const DiscordIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -26,7 +25,6 @@ const easeOut = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
 
 export default function Contact() {
   const { t, lang } = useLang()
-  const tilt = useTilt()
 
   const socials = [
     siteConfig.twitter && { href: siteConfig.twitter, icon: <TwitterIcon />, label: 'Twitter / X' },
@@ -37,10 +35,7 @@ export default function Contact() {
     <section id="contact" className="section-block" style={{ paddingBottom: 'clamp(4rem, 8vw, 7rem)' }}>
       <div className="container-site">
         <div
-          ref={tilt.ref}
-          onMouseMove={tilt.onMouseMove}
-          onMouseLeave={tilt.onMouseLeave}
-          className="contact-panel tilt-card"
+          className="contact-panel"
           style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}
         >
           {/* Floating decorative orbs inside the panel */}

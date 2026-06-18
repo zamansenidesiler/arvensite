@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { flushSync } from 'react-dom'
 import { useLang } from '../context/LanguageContext'
 import { siteConfig } from '../config/site'
 import { scrollToSection, scrollToTop } from '../utils/scrollTo'
@@ -52,7 +53,9 @@ export default function Navbar() {
       Math.max(y, window.innerHeight - y)
     )
     const transition = document.startViewTransition(() => {
-      setTheme(t => t === 'dark' ? 'light' : 'dark')
+      flushSync(() => {
+        setTheme(t => t === 'dark' ? 'light' : 'dark')
+      })
     })
     transition.ready.then(() => {
       const clipPath = [
