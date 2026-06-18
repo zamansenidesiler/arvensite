@@ -3,7 +3,6 @@ import { flushSync } from 'react-dom'
 import { useLang } from '../context/LanguageContext'
 import { siteConfig } from '../config/site'
 import { scrollToSection, scrollToTop } from '../utils/scrollTo'
-import { useTextScramble } from '../hooks/useTextScramble'
 
 const SunIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
@@ -34,18 +33,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark')
-  const { scramble, cancel } = useTextScramble()
 
-  useEffect(() => {
-    const navLinks = document.querySelectorAll('.nav-link')
-    navLinks.forEach(link => {
-      cancel(link)
-      const key = link.getAttribute('data-nav-key')
-      if (key && t.nav[key]) {
-        link.textContent = t.nav[key]
-      }
-    })
-  }, [lang, t, cancel])
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
@@ -136,10 +124,8 @@ export default function Navbar() {
             {links.map(({ key, id }) => (
               <button
                 key={key}
-                data-nav-key={key}
                 onClick={() => scrollTo(id)}
                 className="nav-link"
-                onMouseEnter={(e) => scramble(e, t.nav[key])}
               >
                 {t.nav[key]}
               </button>

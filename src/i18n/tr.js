@@ -223,8 +223,6 @@ const tr = {
     privacy: 'Gizlilik Politikası',
     impressum: 'Künye / Impressum',
     youtube: 'YouTube',
-    instagram: 'Instagram',
-    github: 'GitHub',
     discord: 'Discord',
     ticketSupport: 'Destek Talebi',
     documentation: 'Kullanım Kılavuzu',

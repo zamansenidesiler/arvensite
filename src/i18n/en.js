@@ -223,8 +223,6 @@ const en = {
     privacy: 'Tebex Privacy Policy',
     impressum: 'Tebex Impressum',
     youtube: 'YouTube',
-    instagram: 'Instagram',
-    github: 'GitHub',
     discord: 'Discord',
     ticketSupport: 'Ticket Support',
     documentation: 'Documentation',
