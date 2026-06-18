@@ -33,7 +33,7 @@ export default function Hero() {
                 style === 'outline' ? 'text-outline' : style === 'gradient' ? 'text-gradient' : ''
               }`}
               style={{
-                fontSize: 'clamp(3.25rem, 10vw, 9.5rem)',
+                fontSize: 'clamp(2.25rem, 8.5vw, 8.5rem)',
                 display: 'block',
                 lineHeight: 0.95,
                 paddingBottom: '0.08em',

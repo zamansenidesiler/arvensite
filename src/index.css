@@ -424,7 +424,7 @@ main { position: relative; z-index: 1; }
 .hero-badge-pill .section-badge { margin: 0; }
 .hero-badge-pill .section-badge::before { width: 16px; }
 .hero-word {
-  overflow: hidden;
+  overflow: visible;
 }
 .hero-scroll-indicator {
   position: absolute;
