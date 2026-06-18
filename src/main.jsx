@@ -2,11 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import Lenis from 'lenis'
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './index.css'
 import App from './App.jsx'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const lenis = new Lenis({
   duration: 1.2,
@@ -46,7 +43,6 @@ if (!reduceMotion) {
 
 function raf(time) {
   lenis.raf(time)
-  ScrollTrigger.update()
   requestAnimationFrame(raf)
 }
 requestAnimationFrame(raf)

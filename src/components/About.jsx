@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useState } from 'react'
 import { useLang } from '../context/LanguageContext'
 import { siteConfig } from '../config/site'
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { useCountUp } from '../hooks/useCountUp'
 
 function VideoShowcase() {
   const [playing, setPlaying] = useState(false)
@@ -37,41 +36,20 @@ function VideoShowcase() {
 }
 
 function StatCard({ value, suffix, label, delay }) {
-  const numRef = useRef(null)
-
-  useEffect(() => {
-    const el = numRef.current
-    if (!el) return
-
-    const obj = { val: 0 }
-    const trigger = ScrollTrigger.create({
-      trigger: el,
-      start: 'top 88%',
-      once: true,
-      onEnter: () => {
-        gsap.to(obj, {
-          val: value,
-          duration: 1.8,
-          delay: delay || 0,
-          ease: 'power2.out',
-          onUpdate: () => {
-            el.textContent = Math.round(obj.val) + suffix
-          },
-        })
-      },
-    })
-
-    return () => trigger.kill()
-  }, [value, suffix, delay])
+  const { ref, display } = useCountUp(value, { suffix, duration: 1800, delay })
 
   return (
     <div className="about-stat-cell">
       <div
-        ref={numRef}
+        ref={ref}
         className="font-display font-extrabold text-gradient"
-        style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)', lineHeight: 1 }}
+        style={{
+          fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)',
+          lineHeight: 1,
+          fontVariantNumeric: 'tabular-nums',
+        }}
       >
-        0{suffix}
+        {display}
       </div>
       <div style={{
         fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.08em',

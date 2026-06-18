@@ -4,7 +4,7 @@ const prefersReducedMotion = () =>
   typeof window !== 'undefined' &&
   window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-export function useCountUp(target, { duration = 1800, suffix = '', prefix = '', decimals = 0 } = {}) {
+export function useCountUp(target, { duration = 1800, suffix = '', prefix = '', decimals = 0, delay = 0 } = {}) {
   const ref = useRef(null)
   const [display, setDisplay] = useState(`${prefix}0${suffix}`)
 
@@ -27,21 +27,23 @@ export function useCountUp(target, { duration = 1800, suffix = '', prefix = '', 
         if (!entry.isIntersecting) return
         observer.disconnect()
 
-        const start = performance.now()
-        const tick = (now) => {
-          const progress = Math.min((now - start) / duration, 1)
-          const eased = 1 - Math.pow(1 - progress, 3)
-          setDisplay(format(target * eased))
-          if (progress < 1) requestAnimationFrame(tick)
-        }
-        requestAnimationFrame(tick)
+        setTimeout(() => {
+          const start = performance.now()
+          const tick = (now) => {
+            const progress = Math.min((now - start) / duration, 1)
+            const eased = 1 - Math.pow(1 - progress, 3)
+            setDisplay(format(target * eased))
+            if (progress < 1) requestAnimationFrame(tick)
+          }
+          requestAnimationFrame(tick)
+        }, delay * 1000)
       },
       { threshold: 0.35 }
     )
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [target, duration, suffix, prefix, decimals])
+  }, [target, duration, suffix, prefix, decimals, delay])
 
   return { ref, display }
 }
