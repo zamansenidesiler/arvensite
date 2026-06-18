@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { useLang } from '../context/LanguageContext'
 
 const ease = 'cubic-bezier(0.17, 0.55, 0.55, 1)'
@@ -19,40 +18,22 @@ export default function Hero() {
   }
 
   return (
-    <section
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-        paddingTop: 80,
-      }}
-    >
-      {/* Background orbs */}
+    <section className="hero-section">
       <div className="orb orb-purple" />
       <div className="orb orb-cyan" />
       <div className="orb orb-mid" />
 
-      {/* Content */}
       <div className="container-site" style={{ position: 'relative', zIndex: 1 }}>
-        {/* Badge */}
         <div
-          className="hero-badge section-badge"
-          style={{
-            marginBottom: '2.5rem',
-            animation: `heroFadeIn 0.7s ${easeOut} both`,
-            animationDelay: '0.15s',
-          }}
+          className="hero-badge-pill"
+          style={{ animation: `heroFadeIn 0.7s ${easeOut} both`, animationDelay: '0.15s' }}
         >
-          {t.hero.badge}
+          <div className="section-badge">{t.hero.badge}</div>
         </div>
 
-        {/* Headline */}
         <div style={{ marginBottom: '2rem' }}>
           {[
-            { text: t.hero.line1, style: 'text-white' },
+            { text: t.hero.line1, style: 'solid' },
             { text: t.hero.line2, style: 'outline' },
             { text: t.hero.line3, style: 'gradient' },
           ].map(({ text, style }, i) => (
@@ -76,7 +57,6 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* Subtitle */}
         <p
           className="hero-sub"
           style={{
@@ -92,7 +72,6 @@ export default function Hero() {
           {t.hero.sub}
         </p>
 
-        {/* CTAs */}
         <div
           className="hero-ctas flex flex-wrap gap-4 items-center"
           style={{
@@ -110,22 +89,9 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div
-        className="hero-scroll"
-        style={{
-          position: 'absolute',
-          bottom: '2.5rem',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '0.5rem',
-          zIndex: 1,
-          animation: `heroFadeIn 0.5s ${easeOut} both`,
-          animationDelay: '1.1s',
-        }}
+        className="hero-scroll-indicator"
+        style={{ animation: `heroFadeIn 0.5s ${easeOut} both`, animationDelay: '1.1s' }}
       >
         <span
           style={{
@@ -139,20 +105,9 @@ export default function Hero() {
         >
           {t.hero.scroll}
         </span>
-        <div
-          style={{
-            width: 1,
-            height: 40,
-            background: 'linear-gradient(to bottom, var(--accent), transparent)',
-            animation: 'scrollPulse 2s ease-in-out infinite',
-          }}
-        />
-        <style>{`
-          @keyframes scrollPulse {
-            0%, 100% { opacity: 0.4; transform: scaleY(1); }
-            50%       { opacity: 1;   transform: scaleY(1.1); }
-          }
-        `}</style>
+        <div className="hero-scroll-mouse">
+          <div className="hero-scroll-wheel" />
+        </div>
       </div>
     </section>
   )

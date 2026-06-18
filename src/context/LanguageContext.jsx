@@ -6,9 +6,14 @@ const translations = { en, tr }
 const LanguageContext = createContext(null)
 
 export function LanguageProvider({ children }) {
-  const [lang, setLang] = useState('tr')
+  const [lang, setLang] = useState(() => localStorage.getItem('lang') || 'tr')
 
-  const toggleLang = () => setLang(prev => (prev === 'tr' ? 'en' : 'tr'))
+  const toggleLang = () => setLang(prev => {
+    const next = prev === 'tr' ? 'en' : 'tr'
+    localStorage.setItem('lang', next)
+    return next
+  })
+
   const t = translations[lang]
 
   return (

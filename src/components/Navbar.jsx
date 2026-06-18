@@ -69,107 +69,44 @@ export default function Navbar() {
         backdropFilter: 'blur(24px)',
         WebkitBackdropFilter: 'blur(24px)',
         borderBottom: '1px solid var(--nav-border)',
+        boxShadow: 'var(--shadow-sm)',
       } : {}}
     >
       <div className="container-site">
         <div className="flex items-center justify-between" style={{ height: 72 }}>
-
-          {/* Logo */}
           <button
             onClick={() => window.lenis?.scrollTo(0)}
             aria-label="arvenmods"
-            style={{
-              background: 'none', border: 'none', cursor: 'pointer', padding: 0,
-              display: 'flex', alignItems: 'center',
-            }}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center' }}
           >
-            <img className="theme-logo-dark" src="/logo.webp" alt="arvenmods"
-              style={{ height: 38, width: 'auto' }} />
-            <img className="theme-logo-light" src="/logo-light.webp" alt="arvenmods"
-              style={{ height: 38, width: 'auto' }} />
+            <img className="theme-logo-dark" src="/logo.webp" alt="arvenmods" style={{ height: 38, width: 'auto' }} />
+            <img className="theme-logo-light" src="/logo-light.webp" alt="arvenmods" style={{ height: 38, width: 'auto' }} />
           </button>
 
-          {/* Desktop links */}
           <div className="hidden md:flex items-center gap-10">
             {links.map(({ key, id }) => (
-              <button
-                key={key}
-                onClick={() => scrollTo(id)}
-                className="text-sm font-medium transition-colors duration-200"
-                style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-secondary)', padding: '4px 0' }}
-                onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
-                onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
-              >
+              <button key={key} onClick={() => scrollTo(id)} className="nav-link">
                 {t.nav[key]}
               </button>
             ))}
           </div>
 
-          {/* Right controls */}
           <div className="flex items-center gap-3">
-            {/* Theme toggle */}
-            <button
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-              className="glass"
-              style={{
-                borderRadius: 9999, padding: '7px 10px',
-                cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: 'var(--text-secondary)', transition: 'all 0.2s',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = 'rgba(245,158,11,0.1)'
-                e.currentTarget.style.borderColor = 'rgba(245,158,11,0.35)'
-                e.currentTarget.style.color = 'var(--accent)'
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = 'var(--surface)'
-                e.currentTarget.style.borderColor = 'var(--border)'
-                e.currentTarget.style.color = 'var(--text-secondary)'
-              }}
-            >
+            <button onClick={toggleTheme} aria-label="Toggle theme" className="nav-icon-btn">
               {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
             </button>
 
-            {/* Lang toggle */}
-            <button
-              onClick={toggleLang}
-              className="font-display text-xs font-bold tracking-widest transition-all duration-200 glass"
-              style={{
-                borderRadius: 9999,
-                padding: '6px 14px',
-                cursor: 'pointer',
-                display: 'flex', gap: 6, alignItems: 'center',
-                color: 'var(--text-secondary)',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = 'rgba(245,158,11,0.1)'
-                e.currentTarget.style.borderColor = 'rgba(245,158,11,0.35)'
-                e.currentTarget.style.color = 'var(--accent)'
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = 'var(--surface)'
-                e.currentTarget.style.borderColor = 'var(--border)'
-                e.currentTarget.style.color = 'var(--text-secondary)'
-              }}
-            >
-              <span style={{ color: lang === 'tr' ? 'var(--accent)' : 'inherit', transition: 'color .2s' }}>TR</span>
+            <button onClick={toggleLang} className="nav-lang-btn">
+              <span className={lang === 'tr' ? 'lang-active' : ''}>TR</span>
               <span style={{ opacity: 0.3 }}>/</span>
-              <span style={{ color: lang === 'en' ? 'var(--accent)' : 'inherit', transition: 'color .2s' }}>EN</span>
+              <span className={lang === 'en' ? 'lang-active' : ''}>EN</span>
             </button>
 
-            {/* Discord CTA */}
-            <a
-              href={siteConfig.discord}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-discord-btn"
-            >
+            <a href={siteConfig.discord} target="_blank" rel="noopener noreferrer" className="nav-discord-btn">
               <DiscordIcon />
               <span className="nav-discord-label">{t.contact.discord}</span>
             </a>
 
-            {/* Hamburger */}
             <button
               className="flex md:hidden flex-col gap-1.5 p-1"
               onClick={() => setMobileOpen(v => !v)}
@@ -180,16 +117,12 @@ export default function Navbar() {
                 <span
                   key={i}
                   style={{
-                    display: 'block',
-                    width: 22,
-                    height: 1.5,
+                    display: 'block', width: 22, height: 1.5,
                     background: mobileOpen ? 'var(--accent)' : 'var(--text-primary)',
-                    borderRadius: 2,
-                    transition: 'all 0.3s ease',
+                    borderRadius: 2, transition: 'all 0.3s ease',
                     transform: mobileOpen
                       ? i === 0 ? 'translateY(6.5px) rotate(45deg)'
-                      : i === 2 ? 'translateY(-6.5px) rotate(-45deg)'
-                      : 'none'
+                      : i === 2 ? 'translateY(-6.5px) rotate(-45deg)' : 'none'
                       : 'none',
                     opacity: mobileOpen && i === 1 ? 0 : 1,
                   }}
@@ -200,30 +133,22 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
-        <div
-          style={{
-            background: 'var(--mobile-menu-bg)',
-            backdropFilter: 'blur(24px)',
-            borderTop: '1px solid var(--nav-border)',
-            padding: '1.5rem',
-          }}
-        >
+        <div style={{
+          background: 'var(--mobile-menu-bg)',
+          backdropFilter: 'blur(24px)',
+          borderTop: '1px solid var(--nav-border)',
+          padding: '1.5rem',
+        }}>
           {links.map(({ key, id }) => (
             <button
               key={key}
               onClick={() => scrollTo(id)}
               className="font-display font-bold w-full text-left"
               style={{
-                display: 'block',
-                fontSize: '1.75rem',
-                color: 'var(--text-primary)',
-                padding: '0.75rem 0',
-                background: 'none',
-                border: 'none',
-                borderBottom: '1px solid var(--border)',
-                cursor: 'pointer',
+                display: 'block', fontSize: '1.75rem', color: 'var(--text-primary)',
+                padding: '0.75rem 0', background: 'none', border: 'none',
+                borderBottom: '1px solid var(--border)', cursor: 'pointer',
               }}
             >
               {t.nav[key]}

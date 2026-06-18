@@ -30,6 +30,7 @@ export default function App() {
   return (
     <LanguageProvider>
       <DynamicHead />
+      <div className="noise-overlay" aria-hidden="true" />
       <Navbar />
       <main>
         <Hero />

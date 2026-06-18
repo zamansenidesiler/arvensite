@@ -32,109 +32,69 @@ export default function Contact() {
   ].filter(Boolean)
 
   return (
-    <section
-      id="contact"
-      style={{ padding: 'clamp(4rem, 8vw, 8rem) 0 clamp(4rem, 8vw, 7rem)', position: 'relative', overflow: 'hidden' }}
-    >
-      {/* Background accent */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '50%', left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: 'min(800px, 90vw)', height: 'min(800px, 90vw)',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(245,158,11,0.07) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }}
-      />
+    <section id="contact" className="section-block" style={{ paddingBottom: 'clamp(4rem, 8vw, 7rem)' }}>
+      <div className="container-site">
+        <div className="contact-panel" style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
+          <div className="section-badge" style={{ justifyContent: 'center', marginBottom: '2rem', animation: `heroFadeIn 0.7s ${easeOut} both`, animationDelay: '0.1s' }}>
+            {t.contact.badge}
+          </div>
 
-      <div className="container-site" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
-
-        <div className="section-badge" style={{ justifyContent: 'center', marginBottom: '2rem', animation: `heroFadeIn 0.7s ${easeOut} both`, animationDelay: '0.1s' }}>
-          {t.contact.badge}
-        </div>
-
-        {/* Big headline */}
-        <div style={{ marginBottom: '2rem' }}>
-          {[
-            { text: t.contact.line1, style: 'muted' },
-            { text: t.contact.line2, style: 'gradient' },
-            { text: t.contact.line3, style: 'outline' },
-          ].map(({ text, style }, i) => (
-            <div
-              key={i}
-              className="font-display font-extrabold"
-              style={{ animation: `heroFadeUp 0.9s ${easeOut} both`, animationDelay: `${0.2 + i * 0.1}s` }}
-            >
-              <span
-                className={style === 'gradient' ? 'text-gradient' : style === 'outline' ? 'text-outline' : ''}
-                style={{
-                  display: 'block',
-                  fontSize: 'clamp(2.25rem, 7vw, 7rem)',
-                  lineHeight: 0.96,
-                  paddingBottom: '0.06em',
-                  color: style === 'muted' ? 'var(--text-muted)' : undefined,
-                }}
-              >
-                {text}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        <p
-          style={{
-            color: 'var(--text-secondary)',
-            fontSize: 'clamp(0.875rem, 1.5vw, 1.05rem)',
-            lineHeight: 1.75,
-            maxWidth: 500,
-            margin: '0 auto 3rem',
-            animation: `heroFadeIn 0.7s ${easeOut} both`,
-            animationDelay: '0.55s',
-          }}
-        >
-          {t.contact.sub}
-        </p>
-
-        {/* Discord CTA */}
-        <div
-          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', animation: `heroFadeIn 0.6s ${easeOut} both`, animationDelay: '0.7s' }}
-        >
-          <a
-            href={siteConfig.discord}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary"
-            style={{ fontSize: '1rem', padding: '1rem 2.5rem' }}
-          >
-            <DiscordIcon />
-            {t.contact.discord}
-          </a>
-
-          {socials.length > 0 && (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.875rem' }}>
-              <span style={{ fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
-                {t.contact.or}
-              </span>
-              <div style={{ display: 'flex', gap: '0.75rem' }}>
-                {socials.map((s, i) => (
-                  <a
-                    key={i}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={s.label}
-                    className="btn-ghost"
-                    style={{ padding: '0.625rem 1.25rem', fontSize: '0.8rem', gap: '0.5rem' }}
-                  >
-                    {s.icon}
-                    {s.label}
-                  </a>
-                ))}
+          <div style={{ marginBottom: '2rem' }}>
+            {[
+              { text: t.contact.line1, style: 'muted' },
+              { text: t.contact.line2, style: 'gradient' },
+              { text: t.contact.line3, style: 'outline' },
+            ].map(({ text, style }, i) => (
+              <div key={i} className="font-display font-extrabold" style={{ animation: `heroFadeUp 0.9s ${easeOut} both`, animationDelay: `${0.2 + i * 0.1}s` }}>
+                <span
+                  className={style === 'gradient' ? 'text-gradient' : style === 'outline' ? 'text-outline' : ''}
+                  style={{
+                    display: 'block',
+                    fontSize: 'clamp(2.25rem, 7vw, 7rem)',
+                    lineHeight: 0.96,
+                    paddingBottom: '0.06em',
+                    color: style === 'muted' ? 'var(--text-muted)' : undefined,
+                  }}
+                >
+                  {text}
+                </span>
               </div>
-            </div>
-          )}
+            ))}
+          </div>
+
+          <p style={{
+            color: 'var(--text-secondary)', fontSize: 'clamp(0.875rem, 1.5vw, 1.05rem)',
+            lineHeight: 1.75, maxWidth: 500, margin: '0 auto 3rem',
+            animation: `heroFadeIn 0.7s ${easeOut} both`, animationDelay: '0.55s',
+          }}>
+            {t.contact.sub}
+          </p>
+
+          <div style={{
+            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem',
+            animation: `heroFadeIn 0.6s ${easeOut} both`, animationDelay: '0.7s',
+          }}>
+            <a href={siteConfig.discord} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ fontSize: '1rem', padding: '1rem 2.5rem' }}>
+              <DiscordIcon />
+              {t.contact.discord}
+            </a>
+
+            {socials.length > 0 && (
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.875rem' }}>
+                <span style={{ fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
+                  {t.contact.or}
+                </span>
+                <div style={{ display: 'flex', gap: '0.75rem' }}>
+                  {socials.map((s, i) => (
+                    <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="btn-ghost" style={{ padding: '0.625rem 1.25rem', fontSize: '0.8rem', gap: '0.5rem' }}>
+                      {s.icon}
+                      {s.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </section>
