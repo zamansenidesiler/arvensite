@@ -57,6 +57,7 @@ export default function Navbar() {
     { key: 'about', id: 'about' },
     { key: 'gallery', id: 'gallery' },
     { key: 'services', id: 'services' },
+    { key: 'pricing', id: 'pricing' },
     { key: 'faq', id: 'faq' },
     { key: 'contact', id: 'contact' },
   ]

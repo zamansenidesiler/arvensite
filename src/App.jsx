@@ -8,6 +8,7 @@ import Trust from './components/Trust'
 import Gallery from './components/Gallery'
 import Services from './components/Services'
 import Process from './components/Process'
+import Pricing from './components/Pricing'
 import Faq from './components/Faq'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -40,6 +41,7 @@ export default function App() {
         <Gallery />
         <Services />
         <Process />
+        <Pricing />
         <Faq />
         <Contact />
       </main>
