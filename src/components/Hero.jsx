@@ -1,0 +1,159 @@
+import { useRef } from 'react'
+import { useLang } from '../context/LanguageContext'
+
+const ease = 'cubic-bezier(0.17, 0.55, 0.55, 1)'
+const easeOut = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+
+export default function Hero() {
+  const { t } = useLang()
+
+  const scrollToGallery = () => {
+    const el = document.getElementById('gallery')
+    if (window.lenis) window.lenis.scrollTo(el, { offset: -80 })
+    else el?.scrollIntoView({ behavior: 'smooth' })
+  }
+  const scrollToContact = () => {
+    const el = document.getElementById('contact')
+    if (window.lenis) window.lenis.scrollTo(el, { offset: -80 })
+    else el?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  return (
+    <section
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+        paddingTop: 80,
+      }}
+    >
+      {/* Background orbs */}
+      <div className="orb orb-purple" />
+      <div className="orb orb-cyan" />
+      <div className="orb orb-mid" />
+
+      {/* Content */}
+      <div className="container-site" style={{ position: 'relative', zIndex: 1 }}>
+        {/* Badge */}
+        <div
+          className="hero-badge section-badge"
+          style={{
+            marginBottom: '2.5rem',
+            animation: `heroFadeIn 0.7s ${easeOut} both`,
+            animationDelay: '0.15s',
+          }}
+        >
+          {t.hero.badge}
+        </div>
+
+        {/* Headline */}
+        <div style={{ marginBottom: '2rem' }}>
+          {[
+            { text: t.hero.line1, style: 'text-white' },
+            { text: t.hero.line2, style: 'outline' },
+            { text: t.hero.line3, style: 'gradient' },
+          ].map(({ text, style }, i) => (
+            <h1
+              key={i}
+              className={`hero-word font-display font-extrabold ${
+                style === 'outline' ? 'text-outline' : style === 'gradient' ? 'text-gradient' : ''
+              }`}
+              style={{
+                fontSize: 'clamp(3.25rem, 10vw, 9.5rem)',
+                display: 'block',
+                lineHeight: 0.95,
+                paddingBottom: '0.08em',
+                color: style === 'outline' ? 'transparent' : style === 'gradient' ? undefined : 'var(--text-primary)',
+                animation: `heroFadeUp 1s ${ease} both`,
+                animationDelay: `${0.35 + i * 0.12}s`,
+              }}
+            >
+              {text}
+            </h1>
+          ))}
+        </div>
+
+        {/* Subtitle */}
+        <p
+          className="hero-sub"
+          style={{
+            color: 'var(--text-secondary)',
+            fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
+            lineHeight: 1.75,
+            maxWidth: 480,
+            marginBottom: '2.5rem',
+            animation: `heroFadeIn 0.7s ${easeOut} both`,
+            animationDelay: '0.75s',
+          }}
+        >
+          {t.hero.sub}
+        </p>
+
+        {/* CTAs */}
+        <div
+          className="hero-ctas flex flex-wrap gap-4 items-center"
+          style={{
+            animation: `heroFadeIn 0.6s ${easeOut} both`,
+            animationDelay: '0.9s',
+          }}
+        >
+          <button onClick={scrollToGallery} className="btn-primary">
+            {t.hero.cta}
+            <span style={{ fontSize: '1.1em' }}>→</span>
+          </button>
+          <button onClick={scrollToContact} className="btn-ghost">
+            {t.hero.ctaSecondary}
+          </button>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div
+        className="hero-scroll"
+        style={{
+          position: 'absolute',
+          bottom: '2.5rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '0.5rem',
+          zIndex: 1,
+          animation: `heroFadeIn 0.5s ${easeOut} both`,
+          animationDelay: '1.1s',
+        }}
+      >
+        <span
+          style={{
+            fontSize: '0.65rem',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: 'var(--text-muted)',
+            fontFamily: 'Syne, sans-serif',
+            fontWeight: 600,
+          }}
+        >
+          {t.hero.scroll}
+        </span>
+        <div
+          style={{
+            width: 1,
+            height: 40,
+            background: 'linear-gradient(to bottom, var(--accent), transparent)',
+            animation: 'scrollPulse 2s ease-in-out infinite',
+          }}
+        />
+        <style>{`
+          @keyframes scrollPulse {
+            0%, 100% { opacity: 0.4; transform: scaleY(1); }
+            50%       { opacity: 1;   transform: scaleY(1.1); }
+          }
+        `}</style>
+      </div>
+    </section>
+  )
+}
