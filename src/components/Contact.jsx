@@ -42,7 +42,7 @@ export default function Contact() {
           <div className="contact-orb orb-1" aria-hidden="true" />
           <div className="contact-orb orb-2" aria-hidden="true" />
 
-          <div className="section-badge" style={{ justifyContent: 'center', marginBottom: '2rem', animation: `heroFadeIn 0.7s ${easeOut} both`, animationDelay: '0.1s', position: 'relative', zIndex: 2 }}>
+          <div className="section-badge" style={{ justifyContent: 'center', marginBottom: '2rem', position: 'relative', zIndex: 2 }}>
             {t.contact.badge}
           </div>
 
@@ -53,8 +53,6 @@ export default function Contact() {
             color: 'var(--text-primary)',
             position: 'relative',
             zIndex: 2,
-            animation: `heroFadeUp 0.9s ${easeOut} both`,
-            animationDelay: '0.2s'
           }}>
             {lang === 'tr' ? (
               <>Birlikte <span className="text-gradient">Muhteşem Şeyler</span> Yapalım</>
@@ -66,7 +64,6 @@ export default function Contact() {
           <p style={{
             color: 'var(--text-secondary)', fontSize: 'clamp(0.875rem, 1.5vw, 1.05rem)',
             lineHeight: 1.75, maxWidth: 500, margin: '0 auto 3rem',
-            animation: `heroFadeIn 0.7s ${easeOut} both`, animationDelay: '0.55s',
             position: 'relative', zIndex: 2
           }}>
             {t.contact.sub}
@@ -74,7 +71,6 @@ export default function Contact() {
 
           <div style={{
             display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem',
-            animation: `heroFadeIn 0.6s ${easeOut} both`, animationDelay: '0.7s',
             position: 'relative', zIndex: 2
           }}>
             <a href={siteConfig.discord} target="_blank" rel="noopener noreferrer" className="btn-primary discord-pulse" style={{ fontSize: '1rem', padding: '1rem 2.5rem' }}>

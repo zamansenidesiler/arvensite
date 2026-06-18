@@ -43,7 +43,11 @@ export default function Navbar() {
 
   const toggleTheme = (event) => {
     if (!document.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('theme-transitioning')
       setTheme(t => t === 'dark' ? 'light' : 'dark')
+      setTimeout(() => {
+        document.documentElement.classList.remove('theme-transitioning')
+      }, 400)
       return
     }
     const x = event.clientX ?? window.innerWidth / 2

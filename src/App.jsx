@@ -28,7 +28,6 @@ export default function App() {
       <SeoHead />
       <CustomCursor />
       <div className="scroll-progress" aria-hidden="true" />
-      <div className="noise-overlay" aria-hidden="true" />
       <Navbar />
       <main id="main-content">
         <Hero />
