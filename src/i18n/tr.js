@@ -215,7 +215,19 @@ const tr = {
   },
   footer: {
     rights: 'Tüm hakları saklıdır.',
-    tagline: 'FiveM modasını yükseltiyor, bir tasarım bir seferde.',
+    tagline: 'Özenle ve tutkuyla üretildi. Her dikişte ve pikselde FiveM modasını bir üst seviyeye taşıma kararlılığımız yatar.',
+    colLegal: 'Yasal',
+    colSocials: 'Sosyal Medya',
+    colSupport: 'Destek',
+    terms: 'Tebex Satış Koşulları',
+    privacy: 'Gizlilik Politikası',
+    impressum: 'Künye / Impressum',
+    youtube: 'YouTube',
+    instagram: 'Instagram',
+    github: 'GitHub',
+    discord: 'Discord',
+    ticketSupport: 'Destek Talebi',
+    documentation: 'Kullanım Kılavuzu',
   },
 }
 

@@ -215,7 +215,19 @@ const en = {
   },
   footer: {
     rights: 'All rights reserved.',
-    tagline: 'Elevating FiveM fashion, one design at a time.',
+    tagline: 'Crafted with passion and precision. Every single pixel carries our dedication to elevating FiveM clothing.',
+    colLegal: 'Legal',
+    colSocials: 'Socials',
+    colSupport: 'Support',
+    terms: 'Tebex Terms of Sale',
+    privacy: 'Tebex Privacy Policy',
+    impressum: 'Tebex Impressum',
+    youtube: 'YouTube',
+    instagram: 'Instagram',
+    github: 'GitHub',
+    discord: 'Discord',
+    ticketSupport: 'Ticket Support',
+    documentation: 'Documentation',
   },
 }
 
