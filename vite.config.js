@@ -232,6 +232,35 @@ function localApiPlugin() {
                 res.writeHead(200, { 'Content-Type': 'application/json' })
                 res.end(JSON.stringify({ success: true, ticket }))
               }
+              else if (req.url === '/api/portal/upload-avatar') {
+                const { email, filename, fileData } = data
+                const users = getUsers()
+                const user = users.find(u => u.email.toLowerCase() === email.toLowerCase())
+                if (!user) {
+                  res.writeHead(404, { 'Content-Type': 'application/json' })
+                  res.end(JSON.stringify({ error: 'Kullanıcı bulunamadı!' }))
+                  return
+                }
+                if (user.isBanned) {
+                  res.writeHead(403, { 'Content-Type': 'application/json' })
+                  res.end(JSON.stringify({ error: 'Yasaklı hesaplar işlem yapamaz!' }))
+                  return
+                }
+                const base64Content = fileData.split(';base64,').pop()
+                const buffer = Buffer.from(base64Content, 'base64')
+                const avatarDir = path.resolve(__dirname, 'public/images/avatars')
+                if (!fs.existsSync(avatarDir)) {
+                  fs.mkdirSync(avatarDir, { recursive: true })
+                }
+                const ext = filename.split('.').pop() || 'webp'
+                const safeName = `avatar_${Date.now()}_${email.replace(/[^a-zA-Z0-9]/g, '_')}.${ext}`
+                const filePath = path.join(avatarDir, safeName)
+                fs.writeFileSync(filePath, buffer)
+                user.profilePic = `/images/avatars/${safeName}`
+                fs.writeFileSync(usersPath, JSON.stringify(users, null, 2))
+                res.writeHead(200, { 'Content-Type': 'application/json' })
+                res.end(JSON.stringify({ success: true, profilePic: user.profilePic }))
+              }
             } catch (err) {
               res.writeHead(500, { 'Content-Type': 'application/json' })
               res.end(JSON.stringify({ error: err.message }))

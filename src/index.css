@@ -1044,7 +1044,12 @@ main { position: relative; z-index: 1; }
 .sr-scale  { opacity: 0; transform: scale(0.9) translateY(34px);     filter: blur(var(--sr-blur)); }
 
 /* Triggered state */
-.sr.in, .sr-up.in, .sr-left.in, .sr-right.in, .sr-scale.in {
+.sr.in, .sr-up.in, .sr-left.in, .sr-right.in, .sr-scale.in,
+.revealed-section .sr,
+.revealed-section .sr-up,
+.revealed-section .sr-left,
+.revealed-section .sr-right,
+.revealed-section .sr-scale {
   opacity: 1;
   transform: none;
   filter: blur(0);
@@ -3272,6 +3277,148 @@ main { position: relative; z-index: 1; }
 }
 .admin-tag-remove-btn:hover {
   color: #f87171;
+}
+
+/* ── Portal Avatar Upload Styles ─────────────────────────────────────────── */
+.portal-avatar-wrapper {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.25);
+  margin: 0 auto 1.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.portal-avatar-wrapper:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.45);
+  border-color: #fff;
+}
+.portal-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.portal-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 800;
+  font-size: 2.25rem;
+  color: var(--accent);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.02) 100%);
+}
+.portal-avatar-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  color: #fff;
+}
+.portal-avatar-wrapper:hover .portal-avatar-overlay {
+  opacity: 1;
+}
+.portal-avatar-overlay-icon {
+  font-size: 1.25rem;
+  margin-bottom: 0.2rem;
+}
+.portal-avatar-overlay-text {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.8);
+}
+.portal-avatar-spinner {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+.portal-avatar-spinner-ring {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(245, 158, 11, 0.2);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: portalAvatarRotate 0.8s linear infinite;
+}
+@keyframes portalAvatarRotate {
+  to { transform: rotate(360deg); }
+}
+
+/* Sidebar Avatar */
+.portal-sidebar-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+.portal-sidebar-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.portal-sidebar-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #000;
+}
+
+/* Admin Table Avatar */
+.admin-table-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+  display: inline-flex;
+}
+.admin-table-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.admin-table-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
 }
 
 

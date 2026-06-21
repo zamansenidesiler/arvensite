@@ -257,6 +257,35 @@ app.post('/api/portal/reply-ticket', (req, res) => {
   }
 })
 
+app.post('/api/portal/upload-avatar', (req, res) => {
+  try {
+    const { email, filename, fileData } = req.body
+    const users = getUsers()
+    const user = users.find(u => u.email.toLowerCase() === email.toLowerCase())
+    if (!user) {
+      return res.status(404).json({ error: 'Kullanıcı bulunamadı!' })
+    }
+    if (user.isBanned) {
+      return res.status(403).json({ error: 'Yasaklı hesaplar işlem yapamaz!' })
+    }
+    const base64Content = fileData.split(';base64,').pop()
+    const buffer = Buffer.from(base64Content, 'base64')
+    const avatarDir = path.resolve(__dirname, 'public/images/avatars')
+    if (!fs.existsSync(avatarDir)) {
+      fs.mkdirSync(avatarDir, { recursive: true })
+    }
+    const ext = filename.split('.').pop() || 'webp'
+    const safeName = `avatar_${Date.now()}_${email.replace(/[^a-zA-Z0-9]/g, '_')}.${ext}`
+    const filePath = path.join(avatarDir, safeName)
+    fs.writeFileSync(filePath, buffer)
+    user.profilePic = `/images/avatars/${safeName}`
+    fs.writeFileSync(usersPath, JSON.stringify(users, null, 2))
+    res.json({ success: true, profilePic: user.profilePic })
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
+
 // --- ADMIN PORTAL API ---
 
 app.post('/api/admin/get-portal-data', checkAdminToken, (req, res) => {

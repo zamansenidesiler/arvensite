@@ -2632,6 +2632,7 @@ export default function Admin() {
                 <table className="admin-table">
                   <thead>
                     <tr>
+                      <th>Avatar</th>
                       <th>Kullanıcı Adı</th>
                       <th>E-posta</th>
                       <th>Durum</th>
@@ -2643,6 +2644,17 @@ export default function Admin() {
                   <tbody>
                     {portalUsers.map(u => (
                       <tr key={u.email}>
+                        <td>
+                          <div className="admin-table-avatar">
+                            {u.profilePic ? (
+                              <img src={u.profilePic} alt="" className="admin-table-avatar-img" />
+                            ) : (
+                              <div className="admin-table-avatar-placeholder">
+                                {u.username ? u.username[0].toUpperCase() : '?'}
+                              </div>
+                            )}
+                          </div>
+                        </td>
                         <td style={{ fontWeight: 600 }}>{u.username}</td>
                         <td style={{ fontFamily: 'monospace', fontSize: '0.75rem' }}>{u.email}</td>
                         <td>

@@ -110,7 +110,12 @@ const localT = {
     
     // Changelog Modal
     updatesModalTitle: "📜 SÜRÜM & GÜNCELLEME GEÇMİŞİ",
-    noUpdatesYet: "Bu ürün için henüz bir sürüm güncelleme geçmişi girilmemiş."
+    noUpdatesYet: "Bu ürün için henüz bir sürüm güncelleme geçmişi girilmemiş.",
+    changeAvatar: "Profil Resmini Değiştir",
+    avatarSuccess: "Profil resmi başarıyla güncellendi!",
+    avatarError: "Profil resmi yüklenirken hata oluştu!",
+    avatarSizeErr: "Profil resmi boyutu 2MB'tan küçük olmalıdır!",
+    uploading: "Yükleniyor..."
   },
   en: {
     loginTitle: "CLIENT PORTAL LOGIN",
@@ -197,7 +202,12 @@ const localT = {
     
     // Changelog Modal
     updatesModalTitle: "📜 VERSION & UPDATE HISTORY",
-    noUpdatesYet: "No update logs have been entered for this product yet."
+    noUpdatesYet: "No update logs have been entered for this product yet.",
+    changeAvatar: "Change Profile Picture",
+    avatarSuccess: "Profile picture updated successfully!",
+    avatarError: "Failed to upload profile picture!",
+    avatarSizeErr: "Profile picture must be under 2MB!",
+    uploading: "Uploading..."
   }
 }
 
@@ -212,6 +222,7 @@ export default function Portal() {
   const [errorMsg, setErrorMsg] = useState('')
   const [toast, setToast] = useState(null)
   const [isBanned, setIsBanned] = useState(false)
+  const [isUploadingAvatar, setIsUploadingAvatar] = useState(false)
 
   // Auth state
   const [currentUser, setCurrentUser] = useState(() => {
@@ -399,6 +410,46 @@ export default function Portal() {
       }
     } catch (err) {
       showToast(pt.replyErr, 'error')
+    }
+  }
+
+  const handleAvatarUpload = async (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+    if (file.size > 2 * 1024 * 1024) {
+      showToast(pt.avatarSizeErr, 'error')
+      return
+    }
+    try {
+      setIsUploadingAvatar(true)
+      const fileUrl = await new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.onload = () => resolve(reader.result)
+        reader.onerror = reject
+        reader.readAsDataURL(file)
+      })
+      const res = await fetch('/api/portal/upload-avatar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: currentUser.email,
+          filename: file.name,
+          fileData: fileUrl
+        })
+      })
+      const result = await res.json()
+      if (result.success) {
+        const updatedUser = { ...currentUser, profilePic: result.profilePic }
+        setCurrentUser(updatedUser)
+        localStorage.setItem('portal_user', JSON.stringify(updatedUser))
+        showToast(pt.avatarSuccess, 'success')
+      } else {
+        showToast(result.error || pt.avatarError, 'error')
+      }
+    } catch (err) {
+      showToast(pt.avatarError, 'error')
+    } finally {
+      setIsUploadingAvatar(false)
     }
   }
 
@@ -626,8 +677,14 @@ export default function Portal() {
             <aside style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div className="portal-glass-panel" style={{ padding: '1.5rem', borderRadius: '20px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem' }}>
-                  <div style={{ width: '40px', height: '40px', borderRadius: '12px', background: 'linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', fontWeight: 'bold', color: '#000', boxShadow: '0 4px 15px rgba(245,158,11,0.25)' }}>
-                    {currentUser.username[0].toUpperCase()}
+                  <div className="portal-sidebar-avatar">
+                    {currentUser.profilePic ? (
+                      <img src={currentUser.profilePic} alt="" className="portal-sidebar-avatar-img" />
+                    ) : (
+                      <div className="portal-sidebar-avatar-placeholder">
+                        {currentUser.username[0].toUpperCase()}
+                      </div>
+                    )}
                   </div>
                   <div style={{ overflow: 'hidden' }}>
                     <div style={{ fontSize: '0.875rem', fontWeight: 800, color: 'var(--text-primary)', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>{currentUser.username}</div>
@@ -955,6 +1012,37 @@ export default function Portal() {
                   <div style={{ borderBottom: '1px solid rgba(255,255,255,0.07)', paddingBottom: '1.25rem', marginBottom: '2rem' }}>
                     <h3 className="font-display font-bold text-gradient" style={{ fontSize: '1.2rem', margin: 0 }}>{pt.profileTitle}</h3>
                     <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginTop: '0.4rem', margin: 0 }}>{pt.profileDesc}</p>
+                  </div>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '2.5rem', borderBottom: '1px dashed rgba(255,255,255,0.06)', paddingBottom: '2rem' }}>
+                    <div className="portal-avatar-wrapper" onClick={() => document.getElementById('portal-avatar-file-input').click()}>
+                      {isUploadingAvatar && (
+                        <div className="portal-avatar-spinner">
+                          <div className="portal-avatar-spinner-ring"></div>
+                        </div>
+                      )}
+                      {currentUser.profilePic ? (
+                        <img src={currentUser.profilePic} alt="" className="portal-avatar-img" />
+                      ) : (
+                        <div className="portal-avatar-placeholder">
+                          {currentUser.username[0].toUpperCase()}
+                        </div>
+                      )}
+                      <div className="portal-avatar-overlay">
+                        <span className="portal-avatar-overlay-icon">📷</span>
+                        <span className="portal-avatar-overlay-text">{isUploadingAvatar ? pt.uploading : pt.changeAvatar}</span>
+                      </div>
+                    </div>
+                    <input
+                      type="file"
+                      id="portal-avatar-file-input"
+                      accept="image/*"
+                      style={{ display: 'none' }}
+                      onChange={handleAvatarUpload}
+                      disabled={isUploadingAvatar}
+                    />
+                    <h4 className="font-display font-bold" style={{ fontSize: '1.15rem', margin: '0 0 0.25rem', color: 'var(--text-primary)' }}>{currentUser.username}</h4>
+                    <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>{currentUser.email}</span>
                   </div>
 
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2.25rem' }}>
