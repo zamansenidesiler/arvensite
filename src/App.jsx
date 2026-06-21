@@ -6,7 +6,6 @@ import Hero from './components/Hero'
 import Marquee from './components/Marquee'
 import Footer from './components/Footer'
 import SectionLoader from './components/SectionLoader'
-import CustomCursor from './components/CustomCursor'
 
 const About = lazy(() => import('./components/About'))
 const Trust = lazy(() => import('./components/Trust'))
@@ -26,7 +25,6 @@ export default function App() {
   return (
     <LanguageProvider>
       <SeoHead />
-      <CustomCursor />
       <div className="scroll-progress" aria-hidden="true" />
       <Navbar />
       <main id="main-content">
