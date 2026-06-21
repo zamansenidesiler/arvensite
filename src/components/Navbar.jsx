@@ -126,7 +126,7 @@ export default function Navbar() {
         boxShadow: 'var(--shadow-sm)',
       } : {}}
     >
-      <div className="container-site">
+      <div className="nav-container-site">
         <div className="flex items-center justify-between" style={{ height: 72 }}>
           <button
             onClick={handleLogoClick}
@@ -137,7 +137,7 @@ export default function Navbar() {
             <img className="theme-logo-light" src="/logo-light.webp" alt="arvenmods" style={{ height: 38, width: 'auto' }} />
           </button>
 
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden lg:flex items-center gap-8">
             {links.map(({ key, id }) => (
               <button
                 key={key}
@@ -184,7 +184,7 @@ export default function Navbar() {
             </a>
 
             <button
-              className="flex md:hidden flex-col gap-1.5 p-1"
+              className="flex lg:hidden flex-col gap-1.5 p-1"
               onClick={() => setMobileOpen(v => !v)}
               aria-label="Menu"
               style={{ background: 'none', border: 'none', cursor: 'pointer' }}
@@ -210,7 +210,7 @@ export default function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div style={{
+        <div className="lg:hidden" style={{
           background: 'var(--mobile-menu-bg)',
           backdropFilter: 'blur(24px)',
           borderTop: '1px solid var(--nav-border)',

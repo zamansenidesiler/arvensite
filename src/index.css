@@ -237,6 +237,13 @@ main { position: relative; z-index: 1; }
   padding: 0 1.5rem;
 }
 
+.nav-container-site {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
 /* ── Theme-aware logo swap ───────────────────────────────────────────────── */
 .theme-logo-dark  { display: block; }
 .theme-logo-light { display: none; }
@@ -319,7 +326,7 @@ main { position: relative; z-index: 1; }
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1.1rem;
+  padding: 0.45rem 1rem;
   border-radius: 9999px;
   font-family: 'Inter', sans-serif;
   font-size: 0.8rem;
