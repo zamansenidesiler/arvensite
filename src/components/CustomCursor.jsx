@@ -23,13 +23,43 @@ export default function CustomCursor() {
     let cursorY = mouseY
     let ringX = mouseX
     let ringY = mouseY
+    let ringScale = 1
+    let cursorScale = 1
 
     const onMouseMove = (e) => {
       mouseX = e.clientX
       mouseY = e.clientY
     }
 
+    const onMouseOver = (e) => {
+      const target = e.target
+      if (!target) return
+      const interactive = target.closest('a, button, [role="button"], input, select, textarea, .bento-tile, .pricing-toggle')
+      if (interactive) {
+        ringScale = 1.4
+        cursorScale = 0.4
+        ring.classList.add('cursor-hover')
+      } else {
+        ringScale = 1
+        cursorScale = 1
+        ring.classList.remove('cursor-hover')
+      }
+    }
+
+    const onMouseLeave = () => {
+      cursor.style.opacity = '0'
+      ring.style.opacity = '0'
+    }
+
+    const onMouseEnter = () => {
+      cursor.style.opacity = '1'
+      ring.style.opacity = '1'
+    }
+
     window.addEventListener('mousemove', onMouseMove, { passive: true })
+    window.addEventListener('mouseover', onMouseOver, { passive: true })
+    window.addEventListener('mouseleave', onMouseLeave, { passive: true })
+    window.addEventListener('mouseenter', onMouseEnter, { passive: true })
 
     let active = true
     const tick = () => {
@@ -41,8 +71,8 @@ export default function CustomCursor() {
       ringX += (mouseX - ringX) * 0.15
       ringY += (mouseY - ringY) * 0.15
 
-      cursor.style.transform = `translate3d(${cursorX - 4}px, ${cursorY - 4}px, 0) scale(1)`
-      ring.style.transform = `translate3d(${ringX - 20}px, ${ringY - 20}px, 0) scale(1)`
+      cursor.style.transform = `translate3d(${cursorX - 4}px, ${cursorY - 4}px, 0) scale(${cursorScale})`
+      ring.style.transform = `translate3d(${ringX - 20}px, ${ringY - 20}px, 0) scale(${ringScale})`
 
       requestAnimationFrame(tick)
     }
@@ -51,6 +81,9 @@ export default function CustomCursor() {
     return () => {
       active = false
       window.removeEventListener('mousemove', onMouseMove)
+      window.removeEventListener('mouseover', onMouseOver)
+      window.removeEventListener('mouseleave', onMouseLeave)
+      window.removeEventListener('mouseenter', onMouseEnter)
       document.body.style.cursor = ''
     }
   }, [])
@@ -67,7 +100,7 @@ export default function CustomCursor() {
           position: 'fixed', top: 0, left: 0, width: 8, height: 8,
           backgroundColor: 'var(--accent)', borderRadius: '50%',
           pointerEvents: 'none', zIndex: 99999, transform: 'translate3d(-100px,-100px,0)',
-          willChange: 'transform',
+          willChange: 'transform', transition: 'opacity 0.25s ease',
         }}
       />
       <div
@@ -76,7 +109,7 @@ export default function CustomCursor() {
           position: 'fixed', top: 0, left: 0, width: 40, height: 40,
           border: '1.5px solid rgba(245, 158, 11, 0.4)', borderRadius: '50%',
           pointerEvents: 'none', zIndex: 99998, transform: 'translate3d(-100px,-100px,0)',
-          transition: 'background-color 0.25s, border-color 0.25s',
+          transition: 'background-color 0.25s, border-color 0.25s, opacity 0.25s ease',
           willChange: 'transform',
         }}
       />

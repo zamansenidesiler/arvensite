@@ -20,13 +20,13 @@ export default function Hero() {
           <div className="badge-skew">{t.hero.badge}</div>
         </div>
 
-        <div style={{ marginBottom: '2rem' }}>
+        <h1 style={{ marginBottom: '2rem' }}>
           {[
             { text: t.hero.line1, style: 'solid' },
             { text: t.hero.line2, style: 'outline' },
             { text: t.hero.line3, style: 'gradient' },
           ].map(({ text, style }, i) => (
-            <h1
+            <span
               key={i}
               className={`hero-word font-display font-extrabold ${
                 style === 'outline' ? 'text-outline' : style === 'gradient' ? 'text-gradient' : ''
@@ -42,9 +42,9 @@ export default function Hero() {
               }}
             >
               {text}
-            </h1>
+            </span>
           ))}
-        </div>
+        </h1>
 
         <p
           className="hero-sub"

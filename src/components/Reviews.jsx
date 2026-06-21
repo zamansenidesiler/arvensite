@@ -134,19 +134,53 @@ export default function Reviews() {
 
   useEffect(() => {
     const track = trackRef.current
+    if (!track) return
+
+    const handleScroll = () => {
+      const cards = track.querySelectorAll('.review-card')
+      if (cards.length === 0) return
+      let closestIndex = 0
+      let minDistance = Infinity
+      const trackLeft = track.getBoundingClientRect().left
+
+      cards.forEach((card, i) => {
+        const rect = card.getBoundingClientRect()
+        const distance = Math.abs(rect.left - trackLeft)
+        if (distance < minDistance) {
+          minDistance = distance
+          closestIndex = i
+        }
+      })
+      if (closestIndex !== active) {
+        setActive(closestIndex)
+      }
+    }
+
+    let scrollTimeout
+    const onScroll = () => {
+      clearTimeout(scrollTimeout)
+      scrollTimeout = setTimeout(handleScroll, 80)
+    }
+
+    track.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      track.removeEventListener('scroll', onScroll)
+      clearTimeout(scrollTimeout)
+    }
+  }, [t.reviews.items.length, active])
+
+  useEffect(() => {
+    const track = trackRef.current
     if (!track || t.reviews.items.length <= 1) return
 
     const interval = setInterval(() => {
       if (pausedRef.current) return
-      setActive(prev => {
-        const next = (prev + 1) % t.reviews.items.length
-        scrollToIndex(next)
-        return next
-      })
+      const nextIndex = (active + 1) % t.reviews.items.length
+      scrollToIndex(nextIndex)
     }, 5000)
 
     return () => clearInterval(interval)
-  }, [t.reviews.items.length, scrollToIndex])
+  }, [t.reviews.items.length, scrollToIndex, active])
 
   const prev = () => scrollToIndex((active - 1 + t.reviews.items.length) % t.reviews.items.length)
   const next = () => scrollToIndex((active + 1) % t.reviews.items.length)

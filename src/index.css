@@ -1104,11 +1104,7 @@ main { position: relative; z-index: 1; }
 
   .section-badge { font-size: 0.62rem; }
 
-  /* Process steps grid — single column on mobile (step-card handles its own layout) */
-  .steps-grid {
-    grid-template-columns: 1fr !important;
-    gap: 2rem !important;
-  }
+
 
   /* Services grid — single column on small screens */
   .services-grid {
@@ -1742,7 +1738,8 @@ main { position: relative; z-index: 1; }
   z-index: 100000;
   width: 100%;
   transform-origin: 0 50%;
-  transform: scaleX(0);
+  transform: scaleX(var(--scroll-progress, 0));
+  will-change: transform;
 }
 @supports (animation-timeline: scroll()) {
   .scroll-progress {
@@ -1753,6 +1750,12 @@ main { position: relative; z-index: 1; }
 @keyframes grow-progress {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
+}
+
+/* ── Custom Cursor Interactive Hover States ──────────────────────────────── */
+.cursor-hover {
+  background-color: rgba(245, 158, 11, 0.08) !important;
+  border-color: var(--accent) !important;
 }
 
 /* Smooth color transitions on theme toggle fallback */

@@ -15,7 +15,7 @@ export default function Process() {
           <h2 className="section-title sr-up sr-d1">{t.process.title}</h2>
         </div>
 
-        <div className="steps-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, position: 'relative' }}>
+        <div className="steps-grid grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-0 relative">
           <div
             className="hidden md:block"
             style={{
