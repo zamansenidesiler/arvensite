@@ -1,0 +1,30 @@
+[
+  {
+    "username": "demo_user",
+    "email": "demo@arven.com",
+    "passwordHash": "d3ad9315b7be5dd53b31a273b3b3aba5defe700808305aa16a3062b76658a791",
+    "purchases": [
+      "7443118"
+    ],
+    "created": "2026-06-21T18:00:00Z",
+    "isBanned": false
+  },
+  {
+    "username": "demo",
+    "email": "demo2@arven.com",
+    "passwordHash": "d3ad9315b7be5dd53b31a273b3b3aba5defe700808305aa16a3062b76658a791",
+    "purchases": [
+      "7443118",
+      "7443119"
+    ],
+    "created": "2026-06-21T21:23:59.658Z"
+  },
+  {
+    "username": "test_user",
+    "email": "test@arven.com",
+    "passwordHash": "0ed3b5299ee49c76bdcbaeea5ca34b57146af6a93cb8b76995866a8b50e60ec9",
+    "purchases": [],
+    "created": "2026-06-21T21:41:29.276Z",
+    "isBanned": false
+  }
+]

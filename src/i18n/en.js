@@ -1,232 +1,318 @@
 const en = {
-  nav: {
-    about: 'About',
-    gallery: 'Gallery',
-    services: 'Services',
-    pricing: 'Pricing',
-    faq: 'FAQ',
-    contact: 'Contact',
+  "nav": {
+    "about": "About",
+    "gallery": "Gallery",
+    "products": "Products",
+    "services": "Services",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "portal": "Client Portal"
   },
-  hero: {
-    badge: 'FiveM Exclusive',
-    line1: 'CUSTOM',
-    line2: 'CLOTHING',
-    line3: 'DESIGNER',
-    sub: 'Handcrafted exclusive clothing collections for your FiveM server. Every stitch, every pixel — crafted to perfection.',
-    cta: 'View Gallery',
-    ctaSecondary: 'Get in Touch',
-    scroll: 'Scroll to explore',
+  "hero": {
+    "badge": "FiveM Exclusive",
+    "line1": "CUSTOM",
+    "line2": "CLOTHING",
+    "line3": "DESIGNER",
+    "sub": "Handcrafted exclusive clothing collections for your FiveM server. Every stitch, every pixel — crafted to perfection.",
+    "cta": "View Gallery",
+    "ctaSecondary": "Get in Touch",
+    "scroll": "Scroll to explore"
   },
-  marquee: ['PREMIUM DESIGNS', 'FIVEM EXCLUSIVE', 'CUSTOM CLOTHING', 'UNIQUE STYLES', 'HIGH QUALITY', 'CRAFTED WITH CARE'],
-  about: {
-    badge: 'About Me',
-    title: 'Crafting digital fashion for virtual worlds',
-    p1: 'I specialize in creating premium custom clothing textures for FiveM — the leading GTA V roleplay platform. With an eye for detail and a passion for streetwear aesthetics, I bring real-world fashion sensibilities to the digital realm.',
-    p2: 'Every design is meticulously crafted to ensure it looks stunning in-game, with attention to lighting, texture quality, and authentic branding.',
-    stat1: { value: 200, suffix: '+', label: 'Designs Created' },
-    stat2: { value: 50, suffix: '+', label: 'Happy Servers' },
-    stat3: { value: 3, suffix: '+', label: 'Years Experience' },
+  "marquee": [
+    "PREMIUM DESIGNS",
+    "FIVEM EXCLUSIVE",
+    "CUSTOM CLOTHING",
+    "UNIQUE STYLES",
+    "HIGH QUALITY",
+    "CRAFTED WITH CARE"
+  ],
+  "about": {
+    "badge": "About Me",
+    "title": "Crafting digital fashion for virtual worlds",
+    "p1": "I specialize in creating premium custom clothing textures for FiveM — the leading GTA V roleplay platform. With an eye for detail and a passion for streetwear aesthetics, I bring real-world fashion sensibilities to the digital realm.",
+    "p2": "Every design is meticulously crafted to ensure it looks stunning in-game, with attention to lighting, texture quality, and authentic branding.",
+    "stat1": {
+      "value": 200,
+      "suffix": "+",
+      "label": "Designs Created"
+    },
+    "stat2": {
+      "value": 400,
+      "suffix": "+",
+      "label": "Happy Servers"
+    },
+    "stat3": {
+      "value": 4,
+      "suffix": "+",
+      "label": "Years Experience"
+    }
   },
-  trust: {
-    badge: 'Why Arvenmods?',
-    title: 'Clients Choose Us Every Time',
-    online: 'Online',
-    delivered: 'Delivered ✓',
-    messages: [
-      { role: 'client',  text: 'Hey! I need a custom gang outfit pack for my server 🔥' },
-      { role: 'support', text: 'Great choice! What kind of theme or concept do you have in mind?' },
-      { role: 'client',  text: 'Streetwear-heavy, I need a full set for 6 different characters.' },
-      { role: 'support', text: 'Got it! We build everything from scratch — fully original and FPS optimized. Want to jump on Discord and get started? 💜' },
-    ],
-    stats: [
-      { value: '200+', label: 'Designs Completed',  desc: 'Every one built from scratch with a unique concept.',  glow: 'rgba(245,158,11,0.18)' },
-      { value: '100%', label: 'FPS Optimized',       desc: 'Full LOD support — zero impact on server performance.', glow: 'rgba(251,191,36,0.14)' },
-      { value: '24/7', label: 'Discord Support',     desc: 'Reach us anytime, we\'re always here to help.',        glow: 'rgba(245,158,11,0.12)' },
-    ],
-  },
-  gallery: {
-    badge: 'Portfolio',
-    title: 'Featured Designs',
-    subtitle: 'A curated selection of my custom clothing pieces',
-    all: 'All',
-    jacket: 'Jackets',
-    top: 'Tops',
-    pants: 'Pants',
-    set: 'Full Sets',
-    hover: 'View Design',
-  },
-  reviews: {
-    badge: 'Customer Reviews',
-    title: 'What Our Customers Say',
-    subtitle: 'Real feedback from server owners using Arvenmods.',
-    rating: '5/5',
-    ratingLabel: 'Average customer rating',
-    prev: 'Previous review',
-    next: 'Next review',
-    items: [
-      { author: 'Reese', text: 'Best quality, easy setup and optimized. Great support!' },
-      { author: 'Blitzkrieg', text: 'Top level support. Best quality, FPS-friendly designs.' },
-      { author: 'BIG J-ROCC', text: 'Reliable and professional creator. Highly recommended.' },
-      { author: 'Luks', text: 'The best FiveM clothing quality I have ever seen.' },
-      { author: 'nestea', text: 'Smooth delivery, fast and friendly support team.' },
-      { author: 'Spalato', text: 'Professional team, quick responses. Recommended!' },
-    ],
-  },
-  services: {
-    badge: 'Services',
-    title: 'What I Offer',
-    subtitle: 'Premium custom clothing solutions tailored to your server',
-    items: [
+  "trust": {
+    "badge": "Why Arvenmods?",
+    "title": "Clients Choose Us Every Time",
+    "online": "Online",
+    "delivered": "Delivered ✓",
+    "messages": [
       {
-        icon: '◈',
-        title: 'Custom Jackets',
-        desc: 'Premium bomber, leather, and streetwear jackets designed from scratch with your branding and vision.',
+        "role": "client",
+        "text": "Hey! I need a custom gang outfit pack for my server 🔥"
       },
       {
-        icon: '◈',
-        title: 'Full Outfit Sets',
-        desc: 'Complete clothing packages — tops, bottoms, and accessories — for a fully cohesive in-game look.',
+        "role": "support",
+        "text": "Great choice! What kind of theme or concept do you have in mind?"
       },
       {
-        icon: '◈',
-        title: 'Gang & Crew Clothing',
-        desc: 'Distinctive uniform sets for roleplay gangs, organizations, law enforcement, and civilian factions.',
+        "role": "client",
+        "text": "Streetwear-heavy, I need a full set for 6 different characters."
       },
       {
-        icon: '◈',
-        title: 'Brand Replicas',
-        desc: 'High-fidelity recreations of real-world streetwear labels, faithfully adapted for the FiveM environment.',
-      },
+        "role": "support",
+        "text": "Got it! We build everything from scratch — fully original and FPS optimized. Want to jump on Discord and get started? 💜"
+      }
     ],
-  },
-  process: {
-    badge: 'How It Works',
-    title: 'Simple. Clear. Delivered.',
-    steps: [
-      { num: '01', title: 'Contact Me', desc: 'Reach out via Discord with your clothing concept and reference images.' },
-      { num: '02', title: 'Discuss & Quote', desc: "We talk through your requirements and I provide a fair, transparent price." },
-      { num: '03', title: 'Design & Build', desc: 'I craft your clothing with regular progress updates so you stay in the loop.' },
-      { num: '04', title: 'Delivery', desc: 'Receive your finished files, ready to drop straight onto your FiveM server.' },
-    ],
-  },
-  pricing: {
-    badge: 'Pricing',
-    title: 'Price List',
-    subtitle: 'We offer two package options: with updates and without updates. Below, you\'ll find the pricing details for both packages.',
-    toggleEscrow: 'Escrow package',
-    toggleOpen: 'Open Source',
-    toggleLabel: 'Switch package type',
-    corporate: 'Looking for a corporate solution?',
-    contactUs: 'Contact us',
-    escrow: [
+    "stats": [
       {
-        name: 'ARVEN PACK',
-        price: '$59.90',
-        period: '/ Escrow package',
-        desc: 'The package is provided with legal compliance and performance optimization.',
-        features: [
-          'Over 36,000 Products (14GB)',
-          'Optimized',
-          'Perfect Body Compatibility',
+        "value": "200+",
+        "label": "Designs Completed",
+        "desc": "Every one built from scratch with a unique concept.",
+        "glow": "rgba(245,158,11,0.18)"
+      },
+      {
+        "value": "100%",
+        "label": "FPS Optimized",
+        "desc": "Full LOD support — zero impact on server performance.",
+        "glow": "rgba(251,191,36,0.14)"
+      },
+      {
+        "value": "24/7",
+        "label": "Discord Support",
+        "desc": "Reach us anytime, we're always here to help.",
+        "glow": "rgba(245,158,11,0.12)"
+      }
+    ]
+  },
+  "gallery": {
+    "badge": "Portfolio",
+    "title": "Featured Designs",
+    "subtitle": "A curated selection of my custom clothing pieces",
+    "all": "All",
+    "jacket": "Jackets",
+    "top": "Tops",
+    "pants": "Pants",
+    "set": "Full Sets",
+    "hover": "View Design"
+  },
+  "reviews": {
+    "badge": "Customer Reviews",
+    "title": "What Our Customers Say",
+    "subtitle": "Real feedback from server owners using Arvenmods.",
+    "rating": "5/5",
+    "ratingLabel": "Average customer rating",
+    "prev": "Previous review",
+    "next": "Next review",
+    "items": [
+      {
+        "author": "Reese",
+        "text": "Best quality, easy setup and optimized. Great support!"
+      },
+      {
+        "author": "Blitzkrieg",
+        "text": "Top level support. Best quality, FPS-friendly designs."
+      },
+      {
+        "author": "BIG J-ROCC",
+        "text": "Reliable and professional creator. Highly recommended."
+      },
+      {
+        "author": "Luks",
+        "text": "The best FiveM clothing quality I have ever seen."
+      },
+      {
+        "author": "nestea",
+        "text": "Smooth delivery, fast and friendly support team."
+      },
+      {
+        "author": "Spalato",
+        "text": "Professional team, quick responses. Recommended!"
+      },
+      {
+        "author": "Chais",
+        "text": ""
+      }
+    ]
+  },
+  "services": {
+    "badge": "Services",
+    "title": "What I Offer",
+    "subtitle": "Premium custom clothing solutions tailored to your server",
+    "items": [
+      {
+        "icon": "◈",
+        "title": "Custom Jackets",
+        "desc": "Premium bomber, leather, and streetwear jackets designed from scratch with your branding and vision."
+      },
+      {
+        "icon": "◈",
+        "title": "Full Outfit Sets",
+        "desc": "Complete clothing packages — tops, bottoms, and accessories — for a fully cohesive in-game look."
+      },
+      {
+        "icon": "◈",
+        "title": "Gang & Crew Clothing",
+        "desc": "Distinctive uniform sets for roleplay gangs, organizations, law enforcement, and civilian factions."
+      },
+      {
+        "icon": "◈",
+        "title": "Brand Replicas",
+        "desc": "High-fidelity recreations of real-world streetwear labels, faithfully adapted for the FiveM environment."
+      }
+    ]
+  },
+  "process": {
+    "badge": "How It Works",
+    "title": "Simple. Clear. Delivered.",
+    "steps": [
+      {
+        "num": "01",
+        "title": "Contact Me",
+        "desc": "Reach out via Discord with your clothing concept and reference images."
+      },
+      {
+        "num": "02",
+        "title": "Discuss & Quote",
+        "desc": "We talk through your requirements and I provide a fair, transparent price."
+      },
+      {
+        "num": "03",
+        "title": "Design & Build",
+        "desc": "I craft your clothing with regular progress updates so you stay in the loop."
+      },
+      {
+        "num": "04",
+        "title": "Delivery",
+        "desc": "Receive your finished files, ready to drop straight onto your FiveM server."
+      }
+    ]
+  },
+  "pricing": {
+    "badge": "Pricing",
+    "title": "Price List",
+    "subtitle": "We offer two package options: with updates and without updates. Below, you'll find the pricing details for both packages.",
+    "toggleEscrow": "Escrow package",
+    "toggleOpen": "Open Source",
+    "toggleLabel": "Switch package type",
+    "corporate": "Looking for a corporate solution?",
+    "contactUs": "Contact us",
+    "escrow": [
+      {
+        "name": "ARVEN PACK",
+        "price": "$59.90",
+        "period": "/ Escrow package",
+        "desc": "The package is provided with legal compliance and performance optimization.",
+        "features": [
+          "Over 36,000 Products (14GB)",
+          "Optimized",
+          "Perfect Body Compatibility"
         ],
-        cta: 'JOIN DISCORD',
+        "cta": "JOIN DISCORD"
       },
       {
-        name: 'PREMIUM PACK',
-        price: '$59.90',
-        period: '/ Escrow package',
-        desc: 'The package is provided with legal compliance and performance optimization.',
-        features: [
-          'Over 40,000 Products (7.5GB)',
-          'Optimized',
-          'Perfect Body Compatibility',
+        "name": "PREMIUM PACK",
+        "price": "$59.90",
+        "period": "/ Escrow package",
+        "desc": "The package is provided with legal compliance and performance optimization.",
+        "features": [
+          "Over 40,000 Products (7.5GB)",
+          "Optimized",
+          "Perfect Body Compatibility"
         ],
-        cta: 'JOIN DISCORD',
-      },
+        "cta": "JOIN DISCORD"
+      }
     ],
-    openSource: [
+    "openSource": [
       {
-        name: 'ARVEN PACK',
-        price: '$89.90',
-        period: '/ Open Source',
-        desc: 'The package is provided with legal compliance and performance optimization.',
-        features: [
-          'Over 36,000 Products (14GB)',
-          'Optimized',
-          'Perfect Body Compatibility',
+        "name": "ARVEN PACK",
+        "price": "$89.90",
+        "period": "/ Open Source",
+        "desc": "The package is provided with legal compliance and performance optimization.",
+        "features": [
+          "Over 36,000 Products (14GB)",
+          "Optimized",
+          "Perfect Body Compatibility"
         ],
-        cta: 'JOIN DISCORD',
+        "cta": "JOIN DISCORD"
       },
       {
-        name: 'MEGA PACK',
-        price: '$119.90',
-        period: '/ Open Source',
-        desc: 'The package is provided with legal compliance and performance optimization.',
-        features: [
-          'Over 40,000 Products (18GB)',
-          'Optimized',
-          'Perfect Body Compatibility',
+        "name": "MEGA PACK",
+        "price": "$119.90",
+        "period": "/ Open Source",
+        "desc": "The package is provided with legal compliance and performance optimization.",
+        "features": [
+          "Over 40,000 Products (18GB)",
+          "Optimized",
+          "Perfect Body Compatibility"
         ],
-        cta: 'JOIN DISCORD',
-      },
-    ],
+        "cta": "JOIN DISCORD"
+      }
+    ]
   },
-  contact: {
-    badge: 'Contact',
-    line1: "LET'S CREATE",
-    line2: 'SOMETHING',
-    line3: 'INCREDIBLE',
-    sub: "Ready to elevate your server's fashion game? Reach out and let's discuss your vision.",
-    discord: 'Join My Discord',
-    or: 'or find me on',
+  "contact": {
+    "badge": "Contact",
+    "line1": "LET'S CREATE",
+    "line2": "SOMETHING",
+    "line3": "INCREDIBLE",
+    "sub": "Ready to elevate your server's fashion game? Reach out and let's discuss your vision.",
+    "discord": "Join My Discord",
+    "or": "or find me on"
   },
-  faq: {
-    badge: 'FAQ',
-    titleA: 'Frequently',
-    titleB: 'Asked',
-    titleC: 'Questions',
-    subtitle: 'Answers to the questions on your mind.',
-    items: [
+  "faq": {
+    "badge": "FAQ",
+    "titleA": "Frequently",
+    "titleB": "Asked",
+    "titleC": "Questions",
+    "subtitle": "Answers to the questions on your mind.",
+    "items": [
       {
-        q: 'How long does a design take to deliver?',
-        a: 'Most work is delivered within 3-7 days depending on complexity. Priority delivery is available for urgent projects.',
+        "q": "How long does a design take to deliver?",
+        "a": "Most work is delivered within 3-7 days depending on complexity. Priority delivery is available for urgent projects."
       },
       {
-        q: 'Do the designs affect FPS performance?',
-        a: 'No. Every garment is optimized with full LOD support, so server and player performance stays smooth and unaffected.',
+        "q": "Do the designs affect FPS performance?",
+        "a": "No. Every garment is optimized with full LOD support, so server and player performance stays smooth and unaffected."
       },
       {
-        q: 'Are they compatible with ESX and QBCore?',
-        a: 'Yes. Designs are packaged to work seamlessly with all FiveM frameworks (ESX, QBCore, vMenu, and more).',
+        "q": "Are they compatible with ESX and QBCore?",
+        "a": "Yes. Designs are packaged to work seamlessly with all FiveM frameworks (ESX, QBCore, vMenu, and more)."
       },
       {
-        q: 'Do you make fully custom designs from scratch?',
-        a: "Absolutely. Share your concept on Discord and we'll create completely original, royalty-free designs made just for you.",
+        "q": "Do you make fully custom designs from scratch?",
+        "a": "Absolutely. Share your concept on Discord and we'll create completely original, royalty-free designs made just for you."
       },
       {
-        q: 'Do you offer revisions?',
-        a: "Yes. A reasonable number of revisions is included before delivery to make sure you're fully happy with the result.",
+        "q": "Do you offer revisions?",
+        "a": "Yes. A reasonable number of revisions is included before delivery to make sure you're fully happy with the result."
       },
       {
-        q: 'How does payment work?',
-        a: 'After we connect on Discord and confirm the work, secure payment options are provided to get started.',
-      },
-    ],
+        "q": "How does payment work?",
+        "a": "After we connect on Discord and confirm the work, secure payment options are provided to get started."
+      }
+    ]
   },
-  footer: {
-    rights: 'All rights reserved.',
-    tagline: 'Crafted with passion and precision. Every single pixel carries our dedication to elevating FiveM clothing.',
-    colLegal: 'Legal',
-    colSocials: 'Socials',
-    colSupport: 'Support',
-    terms: 'Tebex Terms of Sale',
-    privacy: 'Tebex Privacy Policy',
-    impressum: 'Tebex Impressum',
-    youtube: 'YouTube',
-    discord: 'Discord',
-    ticketSupport: 'Ticket Support',
-    documentation: 'Documentation',
-  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "tagline": "Crafted with passion and precision. Every single pixel carries our dedication to elevating FiveM clothing.",
+    "colLegal": "Legal",
+    "colSocials": "Socials",
+    "colSupport": "Support",
+    "terms": "Tebex Terms of Sale",
+    "privacy": "Tebex Privacy Policy",
+    "impressum": "Tebex Impressum",
+    "youtube": "YouTube",
+    "discord": "Discord",
+    "ticketSupport": "Ticket Support",
+    "documentation": "Documentation"
+  }
 }
 
 export default en

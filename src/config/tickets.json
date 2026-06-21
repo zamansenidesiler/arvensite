@@ -1,0 +1,72 @@
+[
+  {
+    "id": "ticket_1",
+    "userEmail": "demo@arven.com",
+    "username": "demo_user",
+    "title": "Premium EUP Paketi Kurulumu",
+    "category": "Teknik Destek",
+    "status": "answered",
+    "created": "2026-06-21T18:00:00Z",
+    "messages": [
+      {
+        "role": "client",
+        "sender": "demo_user",
+        "text": "Merhabalar, satın aldığım baggy çete paketini sunucuma yükledim fakat kıyafetler görünmüyor. Yardımcı olur musunuz?",
+        "time": "2026-06-21T18:00:00Z"
+      },
+      {
+        "role": "support",
+        "sender": "Admin",
+        "text": "Merhabalar! Sunucunuzun server.cfg dosyasına 'ensure arven_baggy_pack' satırını eklediğinizden emin olun. Ayrıca giyesi dosyalarının 'stream' klasöründe olduğundan emin olun.",
+        "time": "2026-06-21T18:15:00Z"
+      }
+    ]
+  },
+  {
+    "id": "ticket_1782077068982",
+    "userEmail": "demo2@arven.com",
+    "username": "demo",
+    "title": "dsfsdf",
+    "category": "Teknik Destek",
+    "status": "resolved",
+    "created": "2026-06-21T21:24:28.982Z",
+    "messages": [
+      {
+        "role": "client",
+        "sender": "demo",
+        "text": "sdfsdf",
+        "time": "2026-06-21T21:24:28.982Z"
+      },
+      {
+        "role": "client",
+        "sender": "demo",
+        "text": "merhaba",
+        "time": "2026-06-21T21:25:29.229Z"
+      },
+      {
+        "role": "support",
+        "sender": "Admin",
+        "text": "merhaba",
+        "time": "2026-06-21T21:27:51.991Z"
+      },
+      {
+        "role": "client",
+        "sender": "demo",
+        "text": "naber",
+        "time": "2026-06-21T21:27:59.987Z"
+      },
+      {
+        "role": "support",
+        "sender": "Admin",
+        "text": "iyi sen",
+        "time": "2026-06-21T21:28:11.401Z"
+      },
+      {
+        "role": "support",
+        "sender": "Sistem",
+        "text": "[Sistem] Talep durumu 'Çözüldü' olarak güncellendi.",
+        "time": "2026-06-21T21:33:55.581Z"
+      }
+    ]
+  }
+]

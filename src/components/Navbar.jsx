@@ -85,13 +85,30 @@ export default function Navbar() {
   }, [])
 
   const scrollTo = id => {
-    scrollToSection(id)
+    if (id === 'products') {
+      window.location.hash = '#/products'
+    } else if (id === 'portal') {
+      window.location.hash = '#/portal'
+    } else if (window.location.hash.startsWith('#/package/') || window.location.hash === '#/products' || window.location.hash === '#/portal') {
+      window.location.hash = `#${id}`
+    } else {
+      scrollToSection(id)
+    }
     setMobileOpen(false)
+  }
+
+  const handleLogoClick = () => {
+    if (window.location.hash.startsWith('#/package/') || window.location.hash === '#/products' || window.location.hash === '#/portal') {
+      window.location.hash = ''
+    } else {
+      scrollToTop()
+    }
   }
 
   const links = [
     { key: 'about', id: 'about' },
     { key: 'gallery', id: 'gallery' },
+    { key: 'products', id: 'products' },
     { key: 'services', id: 'services' },
     { key: 'pricing', id: 'pricing' },
     { key: 'faq', id: 'faq' },
@@ -112,7 +129,7 @@ export default function Navbar() {
       <div className="container-site">
         <div className="flex items-center justify-between" style={{ height: 72 }}>
           <button
-            onClick={() => scrollToTop()}
+            onClick={handleLogoClick}
             aria-label="arvenmods"
             style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center' }}
           >
@@ -142,6 +159,24 @@ export default function Navbar() {
               <span style={{ opacity: 0.3 }}>/</span>
               <span className={lang === 'en' ? 'lang-active' : ''}>EN</span>
             </button>
+
+            <a 
+              href="#/portal" 
+              className="btn-outlined-modern" 
+              style={{ 
+                padding: '0.45rem 1rem', 
+                fontSize: '0.75rem', 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                gap: '0.4rem', 
+                borderRadius: '10px',
+                border: '1px solid rgba(245, 158, 11, 0.3)',
+                color: 'var(--accent)',
+                fontWeight: 700
+              }}
+            >
+              👤 {t.nav.portal}
+            </a>
 
             <a href={siteConfig.discord} target="_blank" rel="noopener noreferrer" className="nav-discord-btn">
               <DiscordIcon />
@@ -195,6 +230,17 @@ export default function Navbar() {
               {t.nav[key]}
             </button>
           ))}
+          <button
+            onClick={() => scrollTo('portal')}
+            className="font-display font-bold w-full text-left"
+            style={{
+              display: 'block', fontSize: '1.75rem', color: 'var(--accent)',
+              padding: '0.75rem 0', background: 'none', border: 'none',
+              borderBottom: '1px solid var(--border)', cursor: 'pointer',
+            }}
+          >
+            👤 {t.nav.portal}
+          </button>
         </div>
       )}
     </nav>
