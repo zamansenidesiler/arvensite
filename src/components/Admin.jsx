@@ -2574,18 +2574,18 @@ export default function Admin() {
                       <span style={{ fontSize: '0.62rem', color: 'var(--text-secondary)', alignSelf: isClient ? 'flex-start' : 'flex-end', marginBottom: '0.2rem' }}>
                         {msg.sender} ({isClient ? 'Müşteri' : 'Destek'}) • {new Date(msg.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </span>
-                      <div style={{
-                        padding: '0.75rem 1rem',
-                        borderRadius: '12px',
-                        borderTopRightRadius: isClient ? '12px' : '2px',
-                        borderTopLeftRadius: isClient ? '2px' : '12px',
-                        background: isClient ? 'rgba(255, 255, 255, 0.06)' : 'var(--accent)',
-                        border: isClient ? '1px solid var(--border)' : '1px solid rgba(255,255,255,0.1)',
-                        color: isClient ? 'var(--text-primary)' : '#000',
-                        fontSize: '0.8rem',
-                        lineHeight: 1.4,
-                        fontWeight: isClient ? 400 : 600
-                      }}>
+                      <div 
+                        className={isClient ? 'chat-bubble-client' : 'chat-bubble-support'}
+                        style={{
+                          padding: '0.75rem 1rem',
+                          borderRadius: '12px',
+                          borderTopRightRadius: isClient ? '12px' : '2px',
+                          borderTopLeftRadius: isClient ? '2px' : '12px',
+                          fontSize: '0.8rem',
+                          lineHeight: 1.4,
+                          fontWeight: isClient ? 400 : 600
+                        }}
+                      >
                         {msg.text}
                       </div>
                     </div>

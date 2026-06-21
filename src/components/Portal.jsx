@@ -963,7 +963,7 @@ export default function Portal() {
                             {msg.sender} • {new Date(msg.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                           </span>
                           <div 
-                            className={isClient ? 'portal-chat-bubble-client' : 'portal-chat-bubble-support'}
+                            className={isClient ? 'chat-bubble-client' : 'chat-bubble-support'}
                             style={{
                               padding: '0.85rem 1.1rem',
                               borderRadius: '16px',

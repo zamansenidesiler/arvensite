@@ -5,7 +5,7 @@
     "username": "demo_user",
     "title": "Premium EUP Paketi Kurulumu",
     "category": "Teknik Destek",
-    "status": "answered",
+    "status": "open",
     "created": "2026-06-21T18:00:00Z",
     "messages": [
       {
@@ -19,6 +19,18 @@
         "sender": "Admin",
         "text": "Merhabalar! Sunucunuzun server.cfg dosyasına 'ensure arven_baggy_pack' satırını eklediğinizden emin olun. Ayrıca giyesi dosyalarının 'stream' klasöründe olduğundan emin olun.",
         "time": "2026-06-21T18:15:00Z"
+      },
+      {
+        "role": "client",
+        "sender": "demo_user",
+        "text": "sa",
+        "time": "2026-06-21T22:49:01.747Z"
+      },
+      {
+        "role": "client",
+        "sender": "demo_user",
+        "text": "Tesekkur ederim, deneyecegim.",
+        "time": "2026-06-21T22:53:30.602Z"
       }
     ]
   },
